@@ -19,15 +19,6 @@ config/name="global-game-jam-2019"
 run/main_scene="res://scenes/GameScene.tscn"
 config/icon="res://icon.png"
 
-[display]
-
-window/size/width=854
-window/size/height=480
-window/size/test_width=854
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
-
 [rendering]
 
-environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/sprites/basetiles.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/mur.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/Sol.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Carrelage.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -9,18 +11,30 @@ extents = Vector2( 16, 16 )
 [node name="Tileset" type="Node2D"]
 
 [node name="Wall" type="Sprite" parent="."]
+editor/display_folded = true
 texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 32, 0, 32, 32 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
 shape = SubResource( 1 )
 
+[node name="Ground" type="Sprite" parent="."]
+position = Vector2( -0.0886917, 43.9217 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+shape = SubResource( 1 )
+
 [node name="Wallpaper1" type="Sprite" parent="."]
 position = Vector2( 64, 0 )
-texture = ExtResource( 1 )
-region_enabled = true
+texture = ExtResource( 3 )
 region_rect = Rect2( 64, 0, 32, 32 )
 
