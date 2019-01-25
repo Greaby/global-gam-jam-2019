@@ -1,6 +1,8 @@
-ode_modules/
+node_modules/
 dist/
 .vscode/
 *.log
 package-lock.json
 /index.html
+.import/
+
