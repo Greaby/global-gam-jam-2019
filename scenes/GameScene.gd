@@ -6,8 +6,8 @@ var trash_carried_label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    timer_label = $HUD/Panel/HBoxContainer/TimerLabel
-    trash_carried_label = $HUD/Panel/HBoxContainer/TrashCountLabel
+    timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
+    trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
     pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
