@@ -220,7 +220,6 @@ region_rect = Rect2( 128, 32, 32, 32 )
 shape = SubResource( 1 )
 
 [node name="StripeWall01_c_nw" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 96, 144 )
 texture = ExtResource( 8 )
 region_enabled = true
@@ -229,5 +228,113 @@ region_rect = Rect2( 160, 32, 32, 32 )
 [node name="StaticBody2D" type="StaticBody2D" parent="StripeWall01_c_nw"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StripeWall01_c_nw/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="BasementWall01_n" type="Sprite" parent="."]
+position = Vector2( 224, 144 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_n"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_n/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_s" type="Sprite" parent="."]
+position = Vector2( 224, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_s"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_s/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_w" type="Sprite" parent="."]
+position = Vector2( 192, 176 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 128, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_w"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_w/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_e" type="Sprite" parent="."]
+position = Vector2( 256, 176 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 160, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_e"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_e/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_nw" type="Sprite" parent="."]
+position = Vector2( 192, 144 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 256, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_nw"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_nw/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_ne" type="Sprite" parent="."]
+position = Vector2( 256, 144 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 256, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_ne"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_ne/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_sw" type="Sprite" parent="."]
+position = Vector2( 192, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_sw"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_sw/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BasementWall01_se" type="Sprite" parent="."]
+position = Vector2( 256, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasementWall01_se"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementWall01_se/StaticBody2D"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="BlackWall" type="Sprite" parent="."]
+position = Vector2( 288, 208 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 224, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BlackWall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackWall/StaticBody2D"]
+visible = false
 shape = SubResource( 1 )
 
