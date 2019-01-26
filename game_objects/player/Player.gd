@@ -11,6 +11,11 @@ var trash_max = 5
 
 var stats_not_yet_shown = true
 
+var collides_movable = null
+var collected_object = null
+
+
+
 onready var anim = $anim
 
 const MAX_GRAVITY = 400
@@ -83,6 +88,26 @@ func _input(event):
 func move():
 	velocity.x = input_direction.x * speed
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+    
+	if collected_object:
+		print ("collected")
+		var new_pos = self.position        
+    #    if collected_object.position.x > self.position.x:                
+    #        new_pos.x = self.position.x + COLLIDE_SIDE_DETECT
+    #    else:
+    #        new_pos.x = self.position.x - COLLIDE_SIDE_DETECT
+		new_pos.y = new_pos.y - 20
+		collected_object.position = new_pos
+        
+    
+func _unhandled_input(event):
+    if event is InputEventKey:
+        if event.pressed and event.scancode == KEY_F and collides_movable:
+            collected_object = collides_movable.collider
+            print ("collecting")
+            
+#            self.add_child(collides_movable.collider)
+                
     
 func set_current_interactor(interactor):
     current_interactor = interactor
