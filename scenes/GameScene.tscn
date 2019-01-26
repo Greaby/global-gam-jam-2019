@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game_objects/mechanics/Door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/mask/mask.png" type="Texture" id=8]
-[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=10]
-[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=11]
-[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=12]
+[ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/mask/mask.png" type="Texture" id=9]
+[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=11]
+[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -205,11 +206,14 @@ position = Vector2( 1264, 864 )
 target_door = NodePath("../DoorToToilet")
 door_style = 1
 
+[node name="Dumpster" parent="Mechanics" instance=ExtResource( 7 )]
+position = Vector2( 448, 912 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 8 )]
 editor/display_folded = true
 position = Vector2( 370, 220 )
 
@@ -238,7 +242,7 @@ margin_right = 1400.0
 margin_bottom = 920.0
 rect_scale = Vector2( 0.17, 0.17 )
 rect_pivot_offset = Vector2( 1200, 800 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="FadeAnimation" type="AnimationPlayer" parent="CanvasLayer"]
 anims/fade_in = SubResource( 1 )
@@ -279,7 +283,7 @@ size_flags_vertical = 3
 custom_constants/separation = 10
 alignment = 1
 
-[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 9 )]
+[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 10 )]
 
 [node name="spacer2" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 136.0
@@ -294,14 +298,14 @@ margin_right = 153.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 163.0
 margin_right = 203.0
 margin_bottom = 8.0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 text = "03:00"
 align = 1
 
@@ -318,7 +322,7 @@ margin_right = 230.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 stretch_mode = 5
 
 [node name="TrashCountLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
@@ -327,7 +331,7 @@ margin_right = 264.0
 margin_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 text = "5/5"
 align = 1
 
