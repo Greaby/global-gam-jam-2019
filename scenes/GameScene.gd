@@ -2,6 +2,7 @@ extends Node2D
 
 var timer_label
 var trash_carried_label
+var score_label
 
 var current_door_for_fade = null
 
@@ -9,6 +10,7 @@ var current_door_for_fade = null
 func _ready():
     timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
+    score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
     spawn_trash()
 
 func spawn_trash():

@@ -214,7 +214,6 @@ wait_time = 300.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-editor/display_folded = true
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -275,34 +274,33 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/Panel"]
-editor/display_folded = true
 margin_top = 4.0
 margin_right = 400.0
 margin_bottom = 32.0
 size_flags_vertical = 3
-custom_constants/separation = 10
-alignment = 1
+custom_constants/separation = 4
+alignment = 2
 
 [node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 10 )]
 
 [node name="spacer2" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 136.0
-margin_right = 136.0
+margin_left = 222.0
+margin_right = 222.0
 margin_bottom = 14.0
 size_flags_vertical = 0
 align = 1
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 146.0
-margin_right = 153.0
+margin_left = 226.0
+margin_right = 233.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
 texture = ExtResource( 11 )
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 163.0
-margin_right = 203.0
+margin_left = 237.0
+margin_right = 277.0
 margin_bottom = 8.0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 12 )
@@ -310,15 +308,15 @@ text = "03:00"
 align = 1
 
 [node name="spacer" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 213.0
-margin_right = 213.0
+margin_left = 281.0
+margin_right = 281.0
 margin_bottom = 14.0
 size_flags_vertical = 0
 align = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 223.0
-margin_right = 230.0
+margin_left = 285.0
+margin_right = 292.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
@@ -326,13 +324,38 @@ texture = ExtResource( 13 )
 stretch_mode = 5
 
 [node name="TrashCountLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 240.0
-margin_right = 264.0
+margin_left = 296.0
+margin_right = 320.0
 margin_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 12 )
 text = "5/5"
+align = 1
+
+[node name="spacer3" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
+margin_left = 324.0
+margin_right = 328.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 4, 0 )
+size_flags_vertical = 0
+align = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
+margin_left = 332.0
+margin_right = 396.0
+margin_bottom = 8.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 12 )
+text = "00000000"
+align = 1
+
+[node name="spacer4" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
+margin_left = 400.0
+margin_right = 400.0
+margin_bottom = 14.0
+size_flags_vertical = 0
 align = 1
 
 [connection signal="animation_finished" from="CanvasLayer/FadeAnimation" to="." method="_on_FadeAnimation_animation_finished"]
