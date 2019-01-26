@@ -26,8 +26,6 @@ func _on_Area2D_body_entered(body):
 func delete():
     queue_free()
     
-        
-
 func editor_set_trash_type(type):
     
     $Sprite.region_rect.position.x = 128 + 32 * type

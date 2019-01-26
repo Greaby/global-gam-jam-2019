@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var PopText = preload("res://game_objects/fx/TextPop.tscn")
 
+onready var trash_bag = preload("res://game_objects/Mechanics/TrashBag.tscn")
+
 var CARRY_OFFSET_TOP = 30
 
 var current_interactor = null
@@ -17,6 +19,8 @@ var collides_movable = null
 var collected_object = null
 
 var collides_trashcan = null
+
+var collides_dumpster = null
 
 
 var put_down_distance = 0
@@ -119,23 +123,35 @@ func _unhandled_input(event):
             print ("collecting")
             
         # Dropping object to trashCan    
-        elif event.pressed and event.scancode == KEY_F and collected_object and collides_trashcan:            
-            if collides_trashcan.can_add_trash():
-                print ("dropping")
+        elif event.pressed and event.scancode == KEY_F and collected_object and collides_trashcan:
+            if collected_object.is_in_group("trash_item"):        
+                if collides_trashcan.can_add_trash():
+                    print ("dropping")
+                    collected_object.delete()
+                    collected_object = null
+                    collides_trashcan.add_trash(1)
+                    $emptyTrashSound.play()      
+                    #pop_text_on_obj(trash_container, "THROW TRASH")
+        # Dropping trash bag to dumpster           
+        elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster:            
                 collected_object.delete()
-                collected_object = null
-                collides_trashcan.add_trash(1)
-                $emptyTrashSound.play()      
-                #pop_text_on_obj(trash_container, "THROW TRASH")
+                collected_object = null   
                 
-        # Picking up trashcan if its full
+        # Picking up trashbag if can is full
         elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
             #print ("trying to pickup")
             
             if !collides_trashcan.can_add_trash():
-                print ("trying to pickup")
-                collected_object = collides_trashcan
-                put_down_distance = self.position.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
+                
+                 var bag = trash_bag.instance()                
+                 self.get_parent().add_child(bag)
+                 collected_object = bag
+                 collides_trashcan.contents = 0
+    
+    
+                #print ("trying to pickup")
+                #collected_object = collides_trashcan
+                #put_down_distance = self.position.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
                 
         # Dropping object on the ground
         elif event.pressed and event.scancode == KEY_F and collected_object:            
