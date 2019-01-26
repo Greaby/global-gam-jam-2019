@@ -30,6 +30,9 @@ var current_door = null
 var current_score = 0
 var current_life = 3
 
+var has_broom = false
+
+var brooming = false
 
 onready var anim = $anim
 
@@ -72,6 +75,14 @@ func _process(delta):
 func _physics_process(delta):
     update_direction()
     apply_gravity()
+    
+    if has_broom:
+        if Input.is_action_just_pressed("ui_clean"):
+            collected_object.position.y = collected_object.position.y + put_down_distance 
+            brooming = true            
+        if Input.is_action_just_released("ui_clean"):
+            collected_object.position.y = collected_object.position.y - put_down_distance
+            brooming = false
 
     match state:
         states.IDLE:
@@ -85,7 +96,8 @@ func _physics_process(delta):
                 $jumpLandingSound.play()
                 _change_state(states.IDLE)
 
-    move()
+    if !brooming:
+        move()
 
 func update_direction():
     input_direction = Vector2()
@@ -112,7 +124,7 @@ func process_door_enter():
 func move():
     velocity.x = input_direction.x * speed
     velocity = move_and_slide(velocity, Vector2(0, -1))
-    if collected_object:
+    if collected_object and !brooming:
         var new_pos = self.position
         put_down_distance = new_pos.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
         new_pos.y = new_pos.y - CARRY_OFFSET_TOP
@@ -128,10 +140,19 @@ func move():
     
 func _unhandled_input(event):
      if event is InputEventKey:
+        
         # Collecting an object
         if event.pressed and event.scancode == KEY_F and collides_movable and collected_object == null and !collides_trashcan:
-            #collected_object = collides_movable.collider
+            #collected_object = collides_movable.collider                 
             collected_object = collides_movable
+            if collected_object.is_in_group("trash_item"):
+                if collected_object.trash_type == 3:
+                    $pickupGlassSound.play()
+                else:
+                    $pickupMetalSound.play()
+            elif collected_object.is_in_group("broom"): 
+                print ("broom")                                
+                has_broom = true
             print ("collecting")
             
         # Dropping object to trashCan    
@@ -140,13 +161,20 @@ func _unhandled_input(event):
                 if collides_trashcan.can_add_trash():
                     print ("dropping")
                     collected_object.delete()
+                    #pop_text_on_obj(collides_trashcan, "THROW TRASH")
                     collected_object = null
                     collides_trashcan.add_trash(1)
                     $emptyTrashSound.play()      
                     score_points(10)
-                    #pop_text_on_obj(trash_container, "THROW TRASH")
+
+                else:
+                    pop_text_on_obj(collides_trashcan, "TRASH FULL")
+                      
+                    
         # Dropping trash bag to dumpster           
-        elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster:            
+        elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster: 
+            if collected_object.is_in_group("trash_item"):            
+                $emptyTrashSound.play()
                 collected_object.delete()
                 collected_object = null   
                      
@@ -158,7 +186,8 @@ func _unhandled_input(event):
             #print ("trying to pickup")
             
             if !collides_trashcan.can_add_trash():
-                
+                 $pickupGlassSound.play()
+                 $pickupMetalSound.play()
                  var bag = trash_bag.instance()                
                  self.get_parent().add_child(bag)
                  collected_object = bag
@@ -172,6 +201,8 @@ func _unhandled_input(event):
         # Dropping object on the ground
         elif event.pressed and event.scancode == KEY_F and collected_object:            
             collected_object.position.y = collected_object.position.y + put_down_distance 
+            if collected_object.is_in_group("broom"): 
+                has_broom = false
             collected_object = null
             if collides_trashcan:
                 collides_trashcan
