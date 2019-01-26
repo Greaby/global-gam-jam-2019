@@ -12,7 +12,7 @@
 [ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=10]
 [ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=11]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 
 resource_name = "fade_in"
 length = 0.5
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "values": [ Vector2( 2, 2 ), Vector2( 0.17, 0.17 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=3]
 
 bg_color = Color( 0, 0, 0, 0.709804 )
 
@@ -65,7 +65,13 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 327705, 22, 0, 655376, 21, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0 )
 
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Spawner" type="Position2D" parent="Spawners"]
+position = Vector2( 712.094, 214.823 )
+
 [node name="Collectibles" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )
@@ -166,6 +172,7 @@ position = Vector2( 128, 240 )
 trash_type = 3
 
 [node name="Mechanics" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="TrashCan" parent="Mechanics" instance=ExtResource( 4 )]
 position = Vector2( 80, 240 )
@@ -181,6 +188,7 @@ door_style = 1
 [node name="BasementDoor" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 560, 896 )
 target_door = NodePath("../DoorToBasement")
+door_style = 0
 
 [node name="DoorToToilet" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 816, 224 )
@@ -197,6 +205,7 @@ wait_time = 300.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -216,10 +225,11 @@ rect_pivot_offset = Vector2( 1200, 800 )
 texture = ExtResource( 7 )
 
 [node name="FadeAnimation" type="AnimationPlayer" parent="CanvasLayer"]
-anims/fade_in = SubResource( 3 )
+anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 370.0
@@ -236,12 +246,13 @@ margin_left = -570.0
 margin_top = -236.0
 margin_right = -170.0
 margin_bottom = -220.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/Panel"]
+editor/display_folded = true
 margin_top = 4.0
 margin_right = 400.0
 margin_bottom = 32.0
