@@ -29,9 +29,11 @@ tile_data = PoolIntArray( 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )
+trash_type = 0
 
 [node name="TrashPiece2" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 240, 240 )
+trash_type = 0
 
 [node name="TrashPiece3" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 208, 240 )
@@ -87,15 +89,19 @@ trash_type = 1
 
 [node name="TrashPiece5" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 176, 240 )
+trash_type = 0
 
 [node name="TrashPiece13" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 288, 400 )
+trash_type = 0
 
 [node name="TrashPiece14" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 400 )
+trash_type = 0
 
 [node name="TrashPiece15" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 240, 400 )
+trash_type = 0
 
 [node name="TrashPiece6" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 144, 240 )
