@@ -173,7 +173,7 @@ func _unhandled_input(event):
                     
         # Dropping trash bag to dumpster           
         elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster: 
-            if collected_object.is_in_group("trash_item"):            
+            if collected_object.is_in_group("trash_item") or collected_object.is_in_group("trash_bag"):             
                 $emptyTrashSound.play()
                 collected_object.delete()
                 collected_object = null   

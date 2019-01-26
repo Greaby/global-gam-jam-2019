@@ -7,7 +7,9 @@
 
 extents = Vector2( 7, 11 )
 
-[node name="TrashBag" type="Node2D"]
+[node name="TrashBag" type="Node2D" groups=[
+"trash_bag",
+]]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
