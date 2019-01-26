@@ -27,6 +27,8 @@ var put_down_distance = 0
 
 var current_door = null
 
+var current_score = 0
+
 
 onready var anim = $anim
 
@@ -131,12 +133,14 @@ func _unhandled_input(event):
                     collected_object = null
                     collides_trashcan.add_trash(1)
                     $emptyTrashSound.play()      
+                    score_points(10)
                     #pop_text_on_obj(trash_container, "THROW TRASH")
         # Dropping trash bag to dumpster           
         elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster:            
                 collected_object.delete()
                 collected_object = null   
-                
+                     
+                score_points(100)
         # Picking up trashbag if can is full
         elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
             #print ("trying to pickup")
@@ -201,6 +205,19 @@ func pop_text_on_obj(node, text):
     popTextInstance.set_text(text)
     popTextInstance.rect_position = node.position
     pass
+    
+    
+func pop_text_on_self(text):
+    var popTextInstance = PopText.instance()
+    get_parent().add_child(popTextInstance)
+    popTextInstance.set_text(text)
+    popTextInstance.rect_position = position
+    pass
+
+func score_points(points):
+    current_score += points
+    owner.update_score(current_score)
+    pop_text_on_self(str(points))
 
 func can_pick_up_trash():
     return trash_handled < trash_max
