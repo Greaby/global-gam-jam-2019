@@ -75,6 +75,78 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Papier Peint bleu 1" type="Sprite" parent="."]
+position = Vector2( 80, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Papier Peint bleu 2" type="Sprite" parent="."]
+position = Vector2( 128, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mur sombre 1" type="Sprite" parent="."]
+position = Vector2( 128, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 32, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Lumière plafond sombre" type="Sprite" parent="."]
+position = Vector2( 176, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panneau neutre" type="Sprite" parent="."]
+position = Vector2( 240, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panneau vers haut" type="Sprite" parent="."]
+position = Vector2( 272, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 192, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panneau vers bas" type="Sprite" parent="."]
+position = Vector2( 304, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 192, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panneau WC" type="Sprite" parent="."]
+position = Vector2( 336, 40 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 192, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="StripeWall01_single" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 0, 80 )
