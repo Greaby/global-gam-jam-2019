@@ -28,6 +28,7 @@ var put_down_distance = 0
 var current_door = null
 
 var current_score = 0
+var current_life = 3
 
 
 onready var anim = $anim
