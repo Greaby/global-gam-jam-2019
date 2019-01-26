@@ -146,7 +146,7 @@ func _unhandled_input(event):
                  var bag = trash_bag.instance()                
                  self.get_parent().add_child(bag)
                  collected_object = bag
-                 collides_trashcan.contents = 0
+                 collides_trashcan.empty_trash()
     
     
                 #print ("trying to pickup")

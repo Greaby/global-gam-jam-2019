@@ -5,11 +5,14 @@ extends Node2D
 # var b = "text"
 
 var contents = 0
-var capacity = 3
+var capacity = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    for n in self.get_children():
+        n.visible = false
+        
+    self.get_children()[0].visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -23,8 +26,23 @@ func _on_Area_body_entered(body):
 func can_add_trash():
     return contents < capacity 
 
-func add_trash(count):
+func add_trash(count):    
     contents += count
+    
+    for n in self.get_children():
+        n.visible = false
+        
+    self.get_children()[contents-1].visible = true
+    
+    
+func empty_trash():
+    contents = 0
+    for n in self.get_children():
+        n.visible = false
+        
+    self.get_children()[0].visible = true
+    
+     
 
 func _on_Area_body_exited(body):
     print ("exited")
