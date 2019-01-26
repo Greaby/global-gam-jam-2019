@@ -55,6 +55,7 @@ func _change_state(new_state):
             anim.play("Move")
         states.JUMP:
             anim.play("Jump")
+            $jumpSound.play()
             velocity.y = -jump_speed
 
     state = new_state
@@ -81,6 +82,7 @@ func _physics_process(delta):
                 _change_state(states.IDLE)
         states.JUMP:
             if is_on_floor():
+                $jumpLandingSound.play()
                 _change_state(states.IDLE)
 
     move()

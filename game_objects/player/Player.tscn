@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://game_objects/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tileset.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/jump04.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/sounds/jump07.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sounds/appear.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sounds/tonk3.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sounds/glass-clink-01-short.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sounds/drop_trash_01.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/jump_land.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/jump07.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/appear.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/tonk3.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/glass-clink-01-short.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/drop_trash_01.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -92,29 +93,33 @@ anims/Move = SubResource( 4 )
 stream = ExtResource( 3 )
 volume_db = -10.0
 
-[node name="wallKickSound" type="AudioStreamPlayer" parent="."]
+[node name="jumpLandingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -10.0
+volume_db = -12.337
 
-[node name="springSound" type="AudioStreamPlayer" parent="."]
+[node name="wallKickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
 
-[node name="pickupMetalSound" type="AudioStreamPlayer" parent="."]
+[node name="springSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -10.533
+volume_db = -10.0
 
-[node name="pickupGlassSound" type="AudioStreamPlayer" parent="."]
+[node name="pickupMetalSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -10.533
 
-[node name="emptyTrashSound" type="AudioStreamPlayer" parent="."]
+[node name="pickupGlassSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -10.533
+
+[node name="emptyTrashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 volume_db = -10.533
 pitch_scale = 0.9
 
 [node name="collectSecretItemSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -10.533
 pitch_scale = 1.5
 bus = "echo"
