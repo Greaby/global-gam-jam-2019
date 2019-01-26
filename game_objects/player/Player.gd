@@ -21,6 +21,8 @@ var collides_trashcan = null
 
 var put_down_distance = 0
 
+var current_door = null
+
 
 onready var anim = $anim
 
@@ -90,6 +92,13 @@ func apply_gravity():
 func _input(event):
 	if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
 		return _change_state(states.JUMP)
+   
+    # Door enter 
+	if event.is_action_pressed("ui_up") and current_door != null:
+        process_door_enter()
+
+func process_door_enter():
+    current_door.enter_door(self)
 
 func move():
     velocity.x = input_direction.x * speed
@@ -136,6 +145,7 @@ func _unhandled_input(event):
                 collides_trashcan
             
             
+            
 
                 
     
@@ -179,3 +189,10 @@ func pop_text_on_obj(node, text):
 func can_pick_up_trash():
     return trash_handled < trash_max
     
+func goes_in_front_of_door(door):
+    current_door = door
+    
+func no_more_in_front_of_door(door):
+    if current_door == door:
+        current_door = null
+

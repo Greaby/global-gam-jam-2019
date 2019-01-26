@@ -137,17 +137,21 @@ position = Vector2( 80, 240 )
 [node name="TrashCan2" parent="Mechanics" instance=ExtResource( 4 )]
 position = Vector2( 768, 400 )
 
-[node name="Door" parent="Mechanics" instance=ExtResource( 5 )]
+[node name="DoorToBasement" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 528, 384 )
+target_door = NodePath("../BasementDoor")
 
-[node name="Door2" parent="Mechanics" instance=ExtResource( 5 )]
+[node name="BasementDoor" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 560, 896 )
+target_door = NodePath("../DoorToBasement")
 
-[node name="Door3" parent="Mechanics" instance=ExtResource( 5 )]
+[node name="DoorToToilet" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 816, 224 )
+target_door = NodePath("../ToiletDoor")
 
-[node name="Door4" parent="Mechanics" instance=ExtResource( 5 )]
+[node name="ToiletDoor" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 1264, 864 )
+target_door = NodePath("../DoorToToilet")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0

@@ -12,9 +12,21 @@ func _ready():
 
 
 func enter_door(player):
-    
+    print ("Enter door")
     if target_door != null:
         
-        player.position = target_door.position
+        
+        
+        player.position = get_node(target_door).position
         
 
+
+
+func _on_Area_body_entered(body):
+    if body.is_in_group("player"):
+        body.goes_in_front_of_door(self)
+
+
+func _on_Area_body_exited(body):
+    if body.is_in_group("player"):
+        body.no_more_in_front_of_door(self)
