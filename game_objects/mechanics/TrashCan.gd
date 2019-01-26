@@ -18,21 +18,15 @@ func _ready():
 
 func _on_Area_body_entered(body):
     if body.is_in_group("player"):
-        if body.collected_object:
-            body.collides_trashcan = self   
+        body.collides_trashcan = self   
             
 func can_add_trash():
     return contents < capacity 
 
 func add_trash(count):
-    if (contents >= capacity):
-            print ("Trashcan full")
-            return
-    #TODO Limit to capacity    
     contents += count
 
 func _on_Area_body_exited(body):
     print ("exited")
     if body.is_in_group("player"):
-        if body.collected_object:
-            body.collides_trashcan = null   
+        body.collides_trashcan = null   
