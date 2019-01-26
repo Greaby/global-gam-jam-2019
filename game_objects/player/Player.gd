@@ -103,10 +103,13 @@ func move():
     
 func _unhandled_input(event):
      if event is InputEventKey:
-        if event.pressed and event.scancode == KEY_F and collides_movable and collected_object == null:
+        # Collecting an object
+        if event.pressed and event.scancode == KEY_F and collides_movable and collected_object == null and !collides_trashcan:
             #collected_object = collides_movable.collider
             collected_object = collides_movable
-            print ("collecting")       
+            print ("collecting")
+            
+        # Dropping object to trashCan    
         elif event.pressed and event.scancode == KEY_F and collected_object and collides_trashcan:            
             if collides_trashcan.can_add_trash():
                 print ("dropping")
@@ -115,9 +118,22 @@ func _unhandled_input(event):
                 collides_trashcan.add_trash(1)
                 $emptyTrashSound.play()      
                 #pop_text_on_obj(trash_container, "THROW TRASH")
-        elif event.pressed and event.scancode == KEY_F and collected_object:
+                
+        # Picking up trashcan if its full
+        elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
+            #print ("trying to pickup")
+            
+            if !collides_trashcan.can_add_trash():
+                print ("trying to pickup")
+                collected_object = collides_trashcan
+                put_down_distance = self.position.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
+                
+        # Dropping object on the ground
+        elif event.pressed and event.scancode == KEY_F and collected_object:            
             collected_object.position.y = collected_object.position.y + put_down_distance 
             collected_object = null
+            if collides_trashcan:
+                collides_trashcan
             
             
 

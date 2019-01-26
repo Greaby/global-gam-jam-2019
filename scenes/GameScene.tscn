@@ -132,10 +132,10 @@ trash_type = 3
 [node name="Mechanics" type="Node2D" parent="."]
 
 [node name="TrashCan" parent="Mechanics" instance=ExtResource( 4 )]
-position = Vector2( 80, 256 )
+position = Vector2( 80, 240 )
 
 [node name="TrashCan2" parent="Mechanics" instance=ExtResource( 4 )]
-position = Vector2( 768, 416 )
+position = Vector2( 768, 400 )
 
 [node name="Door" parent="Mechanics" instance=ExtResource( 5 )]
 position = Vector2( 528, 384 )
