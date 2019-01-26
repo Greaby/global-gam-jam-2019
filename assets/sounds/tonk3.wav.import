@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tonk3.wav-64ef2e8ca760e9894af2fbd25a4e1718.sample"
+
+[deps]
+
+source_file="res://assets/sounds/tonk3.wav"
+dest_files=[ "res://.import/tonk3.wav-64ef2e8ca760e9894af2fbd25a4e1718.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

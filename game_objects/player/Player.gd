@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
+var PopText = preload("res://game_objects/fx/TextPop.tscn")
+
 export var GRAVITY = 10
 export var MAX_FALLING_SPEED = 800
 export var MOVE_ACCEL = 10
 export var MOVE_DECEL = 10
 export var MOVE_MAX_SPEED = 120
-export var JUMP_FORCE = 900
+export var JUMP_FORCE = 950
 export var SPRING_FORCE = 380
 
 export var COLLIDE_SIDE_DETECT = 10
@@ -26,6 +28,10 @@ var was_on_floor_last_time = false
 var touching_left = false
 var touching_right = false
 
+var trash_handled = 0
+var trash_max = 5
+
+var stats_not_yet_shown = true
 
 onready var anim = $anim
 
@@ -39,7 +45,10 @@ func pickUpCoin():
     
 func _physics_process(delta):
     
-    
+    if stats_not_yet_shown:
+        do_update_stats()
+        stats_not_yet_shown = false
+        
     var axis = Input.get_joy_axis(0,0)
     
     var right_input = Input.is_action_pressed("ui_right")
@@ -186,3 +195,35 @@ func unset_current_interactor(interactor):
     if current_interactor == interactor:
         current_interactor = null
         print("Interactor unset")
+        
+func do_update_stats():
+    owner.update_stats(trash_handled, trash_max)
+
+        
+func do_pick_up_trash(trash_type):
+    if trash_type == 3:
+        $pickupGlassSound.play()
+    else:
+        $pickupMetalSound.play()
+    trash_handled += 1
+    do_update_stats()
+    
+func do_drop_trash(trash_container):
+    if trash_handled > 0:
+        $emptyTrashSound.play()
+        trash_container.add_trash(trash_handled)
+        trash_handled = 0
+        pop_text_on_obj(trash_container, "THROW TRASH")
+    do_update_stats()
+
+
+func pop_text_on_obj(node, text):
+    var popTextInstance = PopText.instance()
+    get_parent().add_child(popTextInstance)
+    popTextInstance.set_text(text)
+    popTextInstance.rect_position = node.position
+    pass
+
+func can_pick_up_trash():
+    return trash_handled < trash_max
+    

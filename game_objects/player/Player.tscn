@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game_objects/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tileset.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/jump04.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/jump07.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/appear.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/tonk3.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/glass-clink-01-short.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/drop_trash_01.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -60,7 +63,9 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 11 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
 GRAVITY = 120
@@ -94,4 +99,17 @@ volume_db = -10.0
 [node name="springSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
+
+[node name="pickupMetalSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.533
+
+[node name="pickupGlassSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.533
+
+[node name="emptyTrashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -10.533
+pitch_scale = 0.9
 

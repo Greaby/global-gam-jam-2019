@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glass-clink-01-short.wav-2646bc653992c0073f0d00332a2ba780.sample"
+
+[deps]
+
+source_file="res://assets/sounds/glass-clink-01-short.wav"
+dest_files=[ "res://.import/glass-clink-01-short.wav-2646bc653992c0073f0d00332a2ba780.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
