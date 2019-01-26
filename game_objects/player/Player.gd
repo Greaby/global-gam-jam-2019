@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var PopText = preload("res://game_objects/fx/TextPop.tscn")
 
-onready var trash_bag = preload("res://game_objects/Mechanics/TrashBag.tscn")
+onready var trash_bag = preload("res://game_objects/mechanics/TrashBag.tscn")
 
 var CARRY_OFFSET_TOP = 30
 
