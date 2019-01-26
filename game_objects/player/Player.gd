@@ -114,7 +114,14 @@ func move():
         put_down_distance = new_pos.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
         new_pos.y = new_pos.y - CARRY_OFFSET_TOP
     
-        collected_object.position = new_pos            
+        collected_object.position = new_pos      
+        
+    for i in range(get_slide_count()):
+        var collision = get_slide_collision(i)
+        var collider = collision.collider
+        
+        if collider.is_in_group("collectable_on_touch"):
+            collider.collect(self)
     
 func _unhandled_input(event):
      if event is InputEventKey:
@@ -218,6 +225,11 @@ func score_points(points):
     current_score += points
     owner.update_score(current_score)
     pop_text_on_self(str(points))
+    
+
+func do_collect_item(score):
+    $collectSecretItemSound.play()
+    score_points(score)
 
 func can_pick_up_trash():
     return trash_handled < trash_max

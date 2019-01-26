@@ -28,6 +28,7 @@ func update_stats(trash_carried, trash_carried_max):
 func update_score(score):
     var text_to_show = str(score).pad_zeros(8)
     score_label.text = text_to_show
+    
 
 
 func _physics_process(delta):
