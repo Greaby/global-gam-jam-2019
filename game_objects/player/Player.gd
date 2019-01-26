@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 export var GRAVITY = 10
-export var MAX_FALLING_SPEED = 240
+export var MAX_FALLING_SPEED = 800
 export var MOVE_ACCEL = 10
 export var MOVE_DECEL = 10
 export var MOVE_MAX_SPEED = 120
-export var JUMP_FORCE = 700
+export var JUMP_FORCE = 900
 export var SPRING_FORCE = 380
 
 export var COLLIDE_SIDE_DETECT = 10
