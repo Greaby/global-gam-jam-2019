@@ -11,7 +11,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-extents = Vector2( 9, 9 )
+extents = Vector2( 17, 18 )
 
 [sub_resource type="Animation" id=2]
 
@@ -72,6 +72,7 @@ GRAVITY = 120
 MAX_FALLING_SPEED = 180
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 11
@@ -79,7 +80,7 @@ frame = 12
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 7 )
+position = Vector2( 0, 12 )
 shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
