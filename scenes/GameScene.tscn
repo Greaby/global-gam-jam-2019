@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -6,10 +6,10 @@
 [ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game_objects/mechanics/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=8]
-[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=9]
-[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=7]
+[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=9]
+[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -193,9 +193,7 @@ size_flags_vertical = 3
 custom_constants/separation = 10
 alignment = 1
 
-[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 6 )]
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
+[node name="Clock" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 146.0
 margin_right = 153.0
 margin_bottom = 7.0
@@ -218,10 +216,9 @@ margin_left = 208.0
 margin_right = 208.0
 margin_bottom = 8.0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 8 )
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
+[node name="TrashCan" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 213.0
 margin_right = 220.0
 margin_bottom = 7.0
@@ -239,6 +236,8 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 8 )
 text = "5/5"
 align = 1
+
+[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 10 )]
 
 [node name="ParentsAreClose" type="Label" parent="CanvasLayer/HUD"]
 visible = false

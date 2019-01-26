@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/House.png-697bf5f422daee1513ec9745339353e7.stex"
+path="res://.import/Car.png-37d666483a5d5bbd02fe7626429caedd.stex"
 
 [deps]
 
-source_file="res://assets/sprites/House.png"
-dest_files=[ "res://.import/House.png-697bf5f422daee1513ec9745339353e7.stex" ]
+source_file="res://assets/sprites/hud/Car.png"
+dest_files=[ "res://.import/Car.png-37d666483a5d5bbd02fe7626429caedd.stex" ]
 
 [params]
 
