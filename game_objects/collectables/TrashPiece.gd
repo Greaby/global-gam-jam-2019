@@ -17,13 +17,23 @@ func _ready():
 
 
 func _on_Area2D_body_entered(body):
-    if body.is_in_group("player"):
-        if body.can_pick_up_trash():
-            body.do_pick_up_trash(trash_type)
-            queue_free()
+    if body.is_in_group("player"):    
+       body.collides_movable = self    
+       # if body.can_pick_up_trash():
+       #     body.do_pick_up_trash(trash_type)
+       #     queue_free()
+    
+func delete():
+    queue_free()
+    
+        
 
 func editor_set_trash_type(type):
     
     $Sprite.region_rect.position.x = 128 + 32 * type
     
     trash_type = type
+
+func _on_Area2D_body_exited(body):
+    if body.is_in_group("player"):    
+       body.collides_movable = null

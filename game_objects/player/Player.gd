@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var PopText = preload("res://game_objects/fx/TextPop.tscn")
 
+var CARRY_OFFSET_TOP = 30
+
 var current_interactor = null
 
 const UP = Vector2(0, -1)
@@ -14,6 +16,10 @@ var stats_not_yet_shown = true
 var collides_movable = null
 var collected_object = null
 
+var collides_trashcan = null
+
+
+var put_down_distance = 0
 
 
 onready var anim = $anim
@@ -86,27 +92,35 @@ func _input(event):
 		return _change_state(states.JUMP)
 
 func move():
-	velocity.x = input_direction.x * speed
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+    velocity.x = input_direction.x * speed
+    velocity = move_and_slide(velocity, Vector2(0, -1))
+    if collected_object:
+        var new_pos = self.position
+        put_down_distance = new_pos.y - collected_object.position.y  + (CARRY_OFFSET_TOP /2)
+        new_pos.y = new_pos.y - CARRY_OFFSET_TOP
     
-	if collected_object:
-		print ("collected")
-		var new_pos = self.position        
-    #    if collected_object.position.x > self.position.x:                
-    #        new_pos.x = self.position.x + COLLIDE_SIDE_DETECT
-    #    else:
-    #        new_pos.x = self.position.x - COLLIDE_SIDE_DETECT
-		new_pos.y = new_pos.y - 20
-		collected_object.position = new_pos
-        
+        collected_object.position = new_pos            
     
 func _unhandled_input(event):
-    if event is InputEventKey:
-        if event.pressed and event.scancode == KEY_F and collides_movable:
-            collected_object = collides_movable.collider
-            print ("collecting")
+     if event is InputEventKey:
+        if event.pressed and event.scancode == KEY_F and collides_movable and collected_object == null:
+            #collected_object = collides_movable.collider
+            collected_object = collides_movable
+            print ("collecting")       
+        elif event.pressed and event.scancode == KEY_F and collected_object and collides_trashcan:            
+            if collides_trashcan.can_add_trash():
+                print ("dropping")
+                collected_object.delete()
+                collected_object = null
+                collides_trashcan.add_trash(1)
+                $emptyTrashSound.play()      
+                #pop_text_on_obj(trash_container, "THROW TRASH")
+        elif event.pressed and event.scancode == KEY_F and collected_object:
+            collected_object.position.y = collected_object.position.y + put_down_distance 
+            collected_object = null
             
-#            self.add_child(collides_movable.collider)
+            
+
                 
     
 func set_current_interactor(interactor):
