@@ -19,6 +19,10 @@ config/name="global-game-jam-2019"
 run/main_scene="res://scenes/GameScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameSingleton="*res://GameSingleton.tscn"
+
 [display]
 
 window/size/width=400
