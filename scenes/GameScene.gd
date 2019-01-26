@@ -8,11 +8,15 @@ var trash_carried_label
 func _ready():
     timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
-    pass # Replace with function body.
+    spawn_trash()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func spawn_trash():
+    var trash_ressource = load("res://game_objects/collectables/TrashPiece.tscn")
+    
+    for spawn in $Spawners.get_children():
+        var trash = trash_ressource.instance()
+        trash.position = spawn.position
+        $Collectibles.add_child(trash)
 
 func update_stats(trash_carried, trash_carried_max):
     var text_to_show = str(trash_carried) + "/" + str(trash_carried_max)

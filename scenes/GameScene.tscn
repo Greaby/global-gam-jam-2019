@@ -30,7 +30,16 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 327705, 22, 0, 655376, 21, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0 )
 
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Spawner" type="Position2D" parent="Spawners"]
+position = Vector2( 695.192, 399.039 )
+
 [node name="Collectibles" type="Node2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )
@@ -131,6 +140,11 @@ position = Vector2( 128, 240 )
 trash_type = 3
 
 [node name="Mechanics" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 11.1459, 15.4328 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TrashCan" parent="Mechanics" instance=ExtResource( 4 )]
 position = Vector2( 80, 240 )
@@ -159,12 +173,14 @@ wait_time = 300.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -173,6 +189,9 @@ margin_left = 370.0
 margin_top = 220.0
 margin_right = 370.0
 margin_bottom = 220.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Panel" type="Panel" parent="CanvasLayer/HUD"]
 anchor_left = 0.5

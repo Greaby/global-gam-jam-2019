@@ -38,63 +38,63 @@ var velocity = Vector2()
 var input_direction = Vector2()
 
 func _ready():
-	_change_state(states.IDLE)
+    _change_state(states.IDLE)
 
 func _change_state(new_state):
-	match new_state:
-		states.IDLE:
-			anim.play("Idle")
-		states.WALK:
-			anim.play("Move")
-		states.JUMP:
-			anim.play("Jump")
-			velocity.y = -jump_speed
+    match new_state:
+        states.IDLE:
+            anim.play("Idle")
+        states.WALK:
+            anim.play("Move")
+        states.JUMP:
+            anim.play("Jump")
+            velocity.y = -jump_speed
 
-	state = new_state
+    state = new_state
 
 func pickUpCoin():
     #get_tree().get_root().get_node("World").player_picked_coin()
     pass
 
 func _process(delta):
-	if stats_not_yet_shown:
+    if stats_not_yet_shown:
         do_update_stats()
         stats_not_yet_shown = false
 
 func _physics_process(delta):
-	update_direction()
-	apply_gravity()
+    update_direction()
+    apply_gravity()
 
-	match state:
-		states.IDLE:
-			if input_direction.x:
-				_change_state(states.WALK)
-		states.WALK:
-			if input_direction.x == 0:
-				_change_state(states.IDLE)
-		states.JUMP:
-			if is_on_floor():
-				_change_state(states.IDLE)
+    match state:
+        states.IDLE:
+            if input_direction.x:
+                _change_state(states.WALK)
+        states.WALK:
+            if input_direction.x == 0:
+                _change_state(states.IDLE)
+        states.JUMP:
+            if is_on_floor():
+                _change_state(states.IDLE)
 
-	move()
+    move()
 
 func update_direction():
-	input_direction = Vector2()
-	input_direction.x = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
-	
-	$Sprite.set_flip_h(input_direction.x < 0)
+    input_direction = Vector2()
+    input_direction.x = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
+    
+    $Sprite.set_flip_h(input_direction.x < 0)
 
 func apply_gravity():
-	velocity.y += gravity
-	if velocity.y >= MAX_GRAVITY:
-		velocity.y = MAX_GRAVITY
+    velocity.y += gravity
+    if velocity.y >= MAX_GRAVITY:
+        velocity.y = MAX_GRAVITY
 
 func _input(event):
-	if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
-		return _change_state(states.JUMP)
+    if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
+        return _change_state(states.JUMP)
    
     # Door enter 
-	if event.is_action_pressed("ui_up") and current_door != null:
+    if event.is_action_pressed("ui_up") and current_door != null:
         process_door_enter()
 
 func process_door_enter():
