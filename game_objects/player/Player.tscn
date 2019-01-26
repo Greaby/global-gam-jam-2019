@@ -68,8 +68,6 @@ tracks/0/keys = {
 ]]
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-GRAVITY = 120
-MAX_FALLING_SPEED = 180
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
