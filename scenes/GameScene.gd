@@ -15,6 +15,8 @@ func _ready():
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
     score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
     
+    GameSingleton.play_overworld_music()
+    
     spawn_trash()
     count_trash()
     update_trash_stats()

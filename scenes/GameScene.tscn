@@ -210,7 +210,6 @@ door_style = 1
 [node name="BasementDoor" parent="Mechanics" instance=ExtResource( 9 )]
 position = Vector2( 560, 896 )
 target_door = NodePath("../DoorToBasement")
-door_style = 0
 
 [node name="DoorToToilet" parent="Mechanics" instance=ExtResource( 9 )]
 position = Vector2( 816, 224 )
