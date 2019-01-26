@@ -20,7 +20,9 @@ func update_stats(trash_carried, trash_carried_max):
 
 
 func _physics_process(delta):
-    
-    var time_left = int($Timer.time_left)    
+    var time_left = int($Timer.time_left) 
+    $CanvasLayer/HUD/Panel/HBoxContainer/CarProgress.set_timeleft(time_left, $Timer.get_wait_time())
     timer_label.text = str(time_left)
+    if ($Timer.time_left < 295):
+        $CanvasLayer/HUD/ParentsAreClose.visible = true
     
