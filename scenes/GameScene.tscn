@@ -1,19 +1,24 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://game_objects/collectables/TrashPiece.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game_objects/collectables/SecretItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=6]
-[ext_resource path="res://game_objects/mechanics/Door.tscn" type="PackedScene" id=7]
-[ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=8]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/sprites/mask/mask.png" type="Texture" id=10]
-[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=12]
-[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=13]
-[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=14]
+[ext_resource path="res://game_objects/mechanics/Sleeper.gd" type="Script" id=5]
+[ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game_objects/mechanics/Door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game_objects/mechanics/Broom.tscn" type="PackedScene" id=10]
+[ext_resource path="res://game_objects/mechanics/Sleeper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game_objects/mechanics/Speaker.tscn" type="PackedScene" id=12]
+[ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=13]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/sprites/mask/mask.png" type="Texture" id=15]
+[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=17]
+[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=18]
+[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=19]
 
 [sub_resource type="Animation" id=1]
 
@@ -183,43 +188,57 @@ position = Vector2( -16, 896 )
 position = Vector2( -256, 1096 )
 
 [node name="Mechanics" type="Node2D" parent="."]
+script = ExtResource( 5 )
 
-[node name="LateralDoor" parent="Mechanics" instance=ExtResource( 5 )]
+[node name="LateralDoor" parent="Mechanics" instance=ExtResource( 6 )]
 position = Vector2( 303.97, 224.014 )
 
-[node name="TrashCan" parent="Mechanics" instance=ExtResource( 6 )]
+[node name="TrashCan" parent="Mechanics" instance=ExtResource( 7 )]
 position = Vector2( 80, 240 )
 
-[node name="TrashCan2" parent="Mechanics" instance=ExtResource( 6 )]
+[node name="TrashCan2" parent="Mechanics" instance=ExtResource( 7 )]
 position = Vector2( 768, 400 )
 
-[node name="DoorToBasement" parent="Mechanics" instance=ExtResource( 7 )]
+[node name="DoorToBasement" parent="Mechanics" instance=ExtResource( 8 )]
 position = Vector2( 528, 384 )
 target_door = NodePath("../BasementDoor")
 door_style = 1
 
-[node name="BasementDoor" parent="Mechanics" instance=ExtResource( 7 )]
+[node name="BasementDoor" parent="Mechanics" instance=ExtResource( 8 )]
 position = Vector2( 560, 896 )
 target_door = NodePath("../DoorToBasement")
+door_style = 0
 
-[node name="DoorToToilet" parent="Mechanics" instance=ExtResource( 7 )]
+[node name="DoorToToilet" parent="Mechanics" instance=ExtResource( 8 )]
 position = Vector2( 816, 224 )
 target_door = NodePath("../ToiletDoor")
 door_style = 1
 
-[node name="ToiletDoor" parent="Mechanics" instance=ExtResource( 7 )]
+[node name="ToiletDoor" parent="Mechanics" instance=ExtResource( 8 )]
 position = Vector2( 1264, 864 )
 target_door = NodePath("../DoorToToilet")
 door_style = 1
 
-[node name="Dumpster" parent="Mechanics" instance=ExtResource( 8 )]
+[node name="Dumpster" parent="Mechanics" instance=ExtResource( 9 )]
 position = Vector2( 888, 1040 )
+
+[node name="Broom" parent="Mechanics" instance=ExtResource( 10 )]
+position = Vector2( 528, 236 )
+
+[node name="Sleeper" parent="Mechanics" instance=ExtResource( 11 )]
+position = Vector2( 672, 400 )
+
+[node name="Speaker" parent="Mechanics" instance=ExtResource( 12 )]
+position = Vector2( 352, 404 )
+
+[node name="Stain" parent="Mechanics" instance=ExtResource( 13 )]
+position = Vector2( 448, 416 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 9 )]
+[node name="Player" parent="." instance=ExtResource( 14 )]
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -247,7 +266,7 @@ margin_right = 1400.0
 margin_bottom = 920.0
 rect_scale = Vector2( 0.17, 0.17 )
 rect_pivot_offset = Vector2( 1200, 800 )
-texture = ExtResource( 10 )
+texture = ExtResource( 15 )
 
 [node name="FadeAnimation" type="AnimationPlayer" parent="CanvasLayer"]
 anims/fade_in = SubResource( 1 )
@@ -287,7 +306,7 @@ size_flags_vertical = 3
 custom_constants/separation = 4
 alignment = 2
 
-[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 11 )]
+[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 16 )]
 
 [node name="spacer2" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 222.0
@@ -302,14 +321,14 @@ margin_right = 233.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
-texture = ExtResource( 12 )
+texture = ExtResource( 17 )
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
 margin_left = 237.0
 margin_right = 277.0
 margin_bottom = 8.0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "03:00"
 align = 1
 
@@ -326,7 +345,7 @@ margin_right = 292.0
 margin_bottom = 7.0
 rect_min_size = Vector2( 7, 7 )
 size_flags_vertical = 0
-texture = ExtResource( 14 )
+texture = ExtResource( 19 )
 stretch_mode = 5
 
 [node name="TrashCountLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
@@ -335,7 +354,7 @@ margin_right = 320.0
 margin_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "5/5"
 align = 1
 
@@ -353,7 +372,7 @@ margin_right = 396.0
 margin_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "00000000"
 align = 1
 
