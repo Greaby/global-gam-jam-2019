@@ -148,6 +148,8 @@ func _unhandled_input(event):
                 collected_object = null   
                      
                 score_points(100)
+                
+                owner.notify_trash_deposited(4)
         # Picking up trashbag if can is full
         elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
             #print ("trying to pickup")
