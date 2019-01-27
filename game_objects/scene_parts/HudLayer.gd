@@ -26,9 +26,13 @@ func show_level_complete(time_bonus, secrets_found, secrets_total):
     var text_to_show = "CLEANING COMPLETE!\nTIME BONUS: " + str(time_bonus) + "\n\nSECRETS FOUND: " + str(secrets_found) + "/" + str(secrets_total)
     $HUD/CenterPanel/CenterLabel.text = text_to_show
 
-func show_level_lost():
+func show_level_lost(is_player_death):
     $HUD/CenterPanel.visible = true
-    var text_to_show = "TOO LATE...\nYOUR PARENTS JUST\nCAME BACK HOME!"
+    var text_to_show
+    if is_player_death:
+        text_to_show = "THE HOUSE HAS SOME\nDANGERS...\n\nBE CAREFUL!"
+    else:
+        text_to_show = "TOO LATE...\nYOUR PARENTS JUST\nCAME BACK HOME!"
     $HUD/CenterPanel/CenterLabel.text = text_to_show
 
 

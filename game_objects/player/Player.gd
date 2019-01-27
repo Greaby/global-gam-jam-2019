@@ -29,6 +29,7 @@ var current_door = null
 
 var current_score = 0
 var current_life = 3
+var current_health = 3
 
 var has_broom = false
 
@@ -48,6 +49,8 @@ var velocity = Vector2()
 var input_direction = Vector2()
 
 var move_enabled = true
+
+var temp_invincible = false
 
 func _ready():
     _change_state(states.IDLE)
@@ -236,7 +239,8 @@ func notify_stain_cleaned():
     owner.notify_stain_cleaned(1)
     score_points(5)
 
-                
+func notify_death():
+    owner.notify_player_death()
     
 func set_current_interactor(interactor):
     current_interactor = interactor
@@ -249,6 +253,7 @@ func unset_current_interactor(interactor):
         
 func do_update_stats():
     owner.update_stats(trash_handled, trash_max)
+    owner.update_health(current_health)
 
         
 func do_pick_up_trash(trash_type):
@@ -311,3 +316,30 @@ func no_more_in_front_of_door(door):
     if current_door == door:
         current_door = null
 
+func cause_damage():
+    if not temp_invincible:
+        decrease_health()
+        if current_health > 0:
+            temp_invincible = true
+            $DamageInvincibilityTimer.start()
+            $DamageAnim.play("temp_invincible")
+
+func _on_DamageInvincibilityTimer_timeout():
+    temp_invincible = false
+    $DamageAnim.stop(true)
+    $Sprite.visible = true
+
+func decrease_health():
+    if current_health > 0:
+        current_health -= 1
+        $hurtSound.play()
+    owner.update_health(current_health)
+    if current_health == 0:
+        notify_death()
+        
+func replenish_health():
+    current_health = 3
+    pop_text_on_self("HEALED")
+    $collectHealingSound.play()
+    owner.update_health(current_health)
+    

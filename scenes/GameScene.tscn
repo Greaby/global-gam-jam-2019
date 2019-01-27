@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://game_objects/collectables/TrashPiece.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game_objects/collectables/SecretItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game_objects/mechanics/TrashBag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game_objects/collectables/Heart.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game_objects/mechanics/Sleeper.gd" type="Script" id=6]
 [ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=8]
@@ -14,8 +14,9 @@
 [ext_resource path="res://game_objects/mechanics/Sleeper.tscn" type="PackedScene" id=12]
 [ext_resource path="res://game_objects/mechanics/Speaker.tscn" type="PackedScene" id=13]
 [ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=14]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=15]
-[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=16]
+[ext_resource path="res://game_objects/mechanics/Spikes.tscn" type="PackedScene" id=15]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=17]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -146,7 +147,8 @@ position = Vector2( -16, 896 )
 [node name="SecretItem2" parent="Collectibles" instance=ExtResource( 4 )]
 position = Vector2( -256, 1096 )
 
-[node name="TrashBag" parent="Collectibles" instance=ExtResource( 5 )]
+[node name="Heart" parent="Collectibles" instance=ExtResource( 5 )]
+position = Vector2( 320, 896 )
 
 [node name="Mechanics" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -205,12 +207,15 @@ stain_style = 1
 position = Vector2( 384, 416 )
 stain_style = 2
 
+[node name="Spikes" parent="Mechanics" instance=ExtResource( 15 )]
+position = Vector2( 368, 912 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 250.0
 one_shot = true
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 15 )]
+[node name="Player" parent="." instance=ExtResource( 16 )]
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -227,7 +232,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 16 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 17 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]

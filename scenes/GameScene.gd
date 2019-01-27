@@ -4,6 +4,7 @@ var timer_label
 var trash_carried_label
 var score_label
 var stain_cleaned_label
+var health_label
 
 var trash_count = 0
 var trash_in_dumpster = 0
@@ -27,6 +28,7 @@ func _ready():
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
     stain_cleaned_label = $CanvasLayer/HUD/Panel/HBoxContainer/StainCountLabel
     score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
+    health_label = $CanvasLayer/HUD/Panel/HBoxContainer/HealthLabel
     
     current_level_number = GameSingleton.current_level
     
@@ -83,6 +85,10 @@ func update_score(score):
     var text_to_show = str(score).pad_zeros(8)
     score_label.text = text_to_show
     
+func update_health(health):
+    var texts = ["---", "--*", "-**", "***"]
+    health_label.text = texts[health]
+    
 func notify_trash_deposited(count):
     trash_in_dumpster += count
     update_trash_stats()
@@ -94,6 +100,9 @@ func notify_stain_cleaned(count):
     
 func notify_secret_found():
     secrets_found += 1
+
+func notify_player_death():
+    player_died()
 
 func _physics_process(delta):
     var time_left = int($Timer.time_left) 
@@ -148,7 +157,16 @@ func level_lost():
     GameSingleton.stop_overworld_music()
     $Player.move_enabled = false
     $Timer.set_paused(true)
-    $CanvasLayer.show_level_lost()
+    $CanvasLayer.show_level_lost(false)
+    #Save score
+    GameSingleton.current_score = $Player.current_score
+    
+func player_died():
+    level_lost = true
+    GameSingleton.stop_overworld_music()
+    $Player.move_enabled = false
+    $Timer.set_paused(true)
+    $CanvasLayer.show_level_lost(true)
     #Save score
     GameSingleton.current_score = $Player.current_score
 
