@@ -193,9 +193,13 @@ func next_level():
         
 func restart_level():
     if GameSingleton.current_level == 1:
-        get_tree().change_scene("res://scenes/GameScene.tscn")
+        get_tree().change_scene("res://scenes/GameSceneLevel1.tscn")
     elif GameSingleton.current_level == 2:
         get_tree().change_scene("res://scenes/GameSceneLevel2.tscn")
+    elif GameSingleton.current_level == 3:
+        get_tree().change_scene("res://scenes/GameSceneLevel3.tscn")
+    elif GameSingleton.current_level == 4:
+        get_tree().change_scene("res://scenes/GameSceneLevel4.tscn")
     else:
         get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
