@@ -193,6 +193,7 @@ func _unhandled_input(event):
             elif collected_object.is_in_group("speaker"):
                 print("speaker")
                 has_speaker = true
+                collected_object.notify_player_takes()
             print ("collecting")
             
         # Dropping object to trashCan    
@@ -256,6 +257,7 @@ func _unhandled_input(event):
                 has_broom = false
             if collected_object.is_in_group("speaker"): 
                 has_speaker = false
+                collected_object.notify_player_puts_back()
             collected_object = null
             if collides_trashcan:
                 collides_trashcan

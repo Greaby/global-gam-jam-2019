@@ -24,12 +24,16 @@ func _on_Area2D_body_exited(body):
 func play_music():
     $AnimationPlayer.play("rave")
     playing = true
+    GameSingleton.att_lvl_music_volume()
+    $MusicLoop.play()
     if sleeper_nearby != null:
         sleeper_nearby.notify_music_start()
     
 func stop_music():
     $AnimationPlayer.play("off")
     playing = false
+    GameSingleton.stop_att_lvl_music_volume()
+    $MusicLoop.stop()
     if sleeper_nearby != null:
         sleeper_nearby.notify_music_stop()
     
@@ -40,5 +44,20 @@ func unassign_sleeper(sleeper):
     if sleeper_nearby == sleeper:
         sleeper_nearby = null
         
+func notify_player_takes():
+    $Timer.stop()
+    if playing:
+        GameSingleton.att_lvl_music_volume()
+        $MusicLoop.play()
+    
+
+func notify_player_puts_back():
+    $Timer.start()
+        
 
 
+
+func _on_Timer_timeout():
+    if playing:
+        GameSingleton.stop_att_lvl_music_volume()
+        $MusicLoop.stop()

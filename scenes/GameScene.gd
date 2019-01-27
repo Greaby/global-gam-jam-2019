@@ -33,6 +33,7 @@ func _ready():
     current_level_number = GameSingleton.current_level
     
     GameSingleton.play_overworld_music()
+    GameSingleton.stop_title_music()
     $CanvasLayer.animate_start_panel(current_level_number)
     
     $Player.init_score(GameSingleton.current_score)

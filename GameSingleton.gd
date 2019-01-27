@@ -24,3 +24,23 @@ func play_overworld_music():
     
 func stop_overworld_music():
     $Music/Overworld.stop()
+    
+    
+func play_title_music():
+    $Music/Title.play()
+    
+func stop_title_music():
+    $Music/Title.stop()
+    
+func att_lvl_music_volume():
+    $Music/Overworld.volume_db = -20
+    pass
+    
+func stop_att_lvl_music_volume():
+    $Music/Overworld.volume_db = -5
+    pass
+
+
+
+
+

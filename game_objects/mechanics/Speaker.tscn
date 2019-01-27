@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game_objects/mechanics/Speaker.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/basetiles.png" type="Texture" id=2]
+[ext_resource path="res://assets/music/speaker_loop.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -63,5 +64,15 @@ autoplay = "off"
 anims/off = SubResource( 2 )
 anims/rave = SubResource( 3 )
 
+[node name="MusicLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -1.396
+max_distance = 300.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

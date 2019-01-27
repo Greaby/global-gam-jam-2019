@@ -8,7 +8,8 @@ var anim_done = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    GameSingleton.play_title_music()
+    GameSingleton.stop_overworld_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
