@@ -35,14 +35,25 @@ func show_page():
     if image_index == 0:
         $Label01.visible = true
         $Label02.visible = false
+        $Label03.visible = false
         $Image01.visible = true
         $Image02.visible = false
+        $Image03.visible = false
     elif image_index == 1:
         $Label01.visible = false
         $Label02.visible = true
+        $Label03.visible = false
         $Image01.visible = false
         $Image02.visible = true
+        $Image03.visible = false
     elif image_index == 2:
+        $Label01.visible = false
+        $Label02.visible = false
+        $Label03.visible = true
+        $Image01.visible = false
+        $Image02.visible = false
+        $Image03.visible = true
+    elif image_index == 3:
         go_to_next_scene()
             
 func go_to_next_scene():
