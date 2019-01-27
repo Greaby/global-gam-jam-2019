@@ -43,7 +43,7 @@ const MAX_GRAVITY = 400
 export (int) var gravity = 18
 export (int) var speed = 200
 export (int) var jump_speed = 400
-export (int) var trampoline_jump_speed = 600
+export (int) var trampoline_jump_speed = 700
 
 var jumped_on_trampoline = false
 
@@ -68,10 +68,11 @@ func _change_state(new_state):
             anim.play("Move")
         states.JUMP:
             anim.play("Jump")
-            $jumpSound.play()
             if jumped_on_trampoline:
+                $bounceOffSound.play()
                 velocity.y = -trampoline_jump_speed
             else:
+                $jumpSound.play()
                 velocity.y = -jump_speed
 
     state = new_state
