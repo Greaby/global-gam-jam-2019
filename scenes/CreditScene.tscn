@@ -141,7 +141,6 @@ position = Vector2( -100, 2.38269 )
 
 [node name="TrashPiece" parent="HUD/Megan_redcup/TrashBag" instance=ExtResource( 12 )]
 position = Vector2( -33.7631, -35.1952 )
-trash_type = 0
 
 [node name="DavidG_name" type="Sprite" parent="HUD"]
 position = Vector2( 1395.3, 149.453 )
@@ -224,3 +223,4 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 655390, 76, 0, 655391, 536870989, 0, 655392, 77, 0, 655394, 536870989, 0, 655395, 536870988, 0, 655396, 77, 0 )
 
+[connection signal="animation_finished" from="HUD/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
