@@ -17,12 +17,18 @@ func editor_set_broom_type(type):
     broom_type = type
     if type == 0:
         # Vacuum
-        $Sprite.visible = true
-        $Sprite2.visible = false
+        $Sprites/Sprite.visible = true
+        $Sprites/Sprite2.visible = false
     if type == 1:
         # Mop
-        $Sprite.visible = false
-        $Sprite2.visible = true
+        $Sprites/Sprite.visible = false
+        $Sprites/Sprite2.visible = true
+        
+func start_scrub():
+    $AnimationPlayer.play("vacuum")
+    
+func stop_scrub():
+    $AnimationPlayer.play("idle")
 
 func _on_Area2D_body_entered(body):
     if body.is_in_group("player"):    

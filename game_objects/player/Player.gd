@@ -94,6 +94,7 @@ func _physics_process(delta):
             collected_object.position.y = collected_object.position.y + put_down_distance 
             brooming = true   
             active_broom_type = broom_type
+            collected_object.start_scrub()
             if broom_type == 0:
                 $vacuumSound.play()      
             if broom_type == 1:
@@ -101,6 +102,7 @@ func _physics_process(delta):
         if Input.is_action_just_released("ui_clean"):
             collected_object.position.y = collected_object.position.y - put_down_distance
             brooming = false
+            collected_object.stop_scrub()
             if broom_type == 0:
                 $vacuumSound.stop()
             if broom_type == 1:
