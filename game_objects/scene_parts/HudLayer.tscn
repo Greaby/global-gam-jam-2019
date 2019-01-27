@@ -133,6 +133,17 @@ alignment = 2
 
 [node name="CarProgress" parent="HUD/Panel/HBoxContainer" instance=ExtResource( 3 )]
 
+[node name="BonusLabel" type="Label" parent="HUD/Panel/HBoxContainer"]
+visible = false
+margin_left = 25.0
+margin_right = 161.0
+margin_bottom = 8.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+text = "-- BONUS STAGE --"
+align = 1
+
 [node name="spacer2" type="Label" parent="HUD/Panel/HBoxContainer"]
 margin_left = 165.0
 margin_right = 165.0

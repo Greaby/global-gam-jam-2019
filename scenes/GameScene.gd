@@ -1,5 +1,7 @@
 extends Node2D
 
+export (bool) var is_bonus_stage = false
+
 var timer_label
 var trash_carried_label
 var score_label
@@ -35,6 +37,9 @@ func _ready():
     canvasLayer = $CanvasLayer
     
     current_level_number = GameSingleton.current_level
+    
+    if is_bonus_stage:
+        $CanvasLayer.show_bonus_stage()
     
     GameSingleton.play_overworld_music()
     GameSingleton.stop_title_music()
@@ -204,4 +209,7 @@ func restart_level():
         get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
 func _on_Timer_timeout():
-    level_lost()
+    if is_bonus_stage:
+        level_complete()
+    else:
+        level_lost()
