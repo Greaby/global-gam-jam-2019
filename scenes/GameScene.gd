@@ -124,7 +124,7 @@ func _physics_process(delta):
 func delay_if_possible():
     var time_left = int($Timer.time_left) 
     timer_label.text = str(time_left).pad_zeros(3)
-    if ($Timer.time_left < 20):
+    if ($Timer.time_left < 20 and !level_complete):
         var rem_time =  $Timer.time_left + 10
         $Timer.stop()
         $Timer.start(rem_time)
