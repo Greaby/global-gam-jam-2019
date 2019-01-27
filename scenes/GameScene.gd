@@ -240,8 +240,14 @@ func restart_level():
         get_tree().change_scene("res://scenes/GameSceneLevel3.tscn")
     elif GameSingleton.current_level == 4:
         get_tree().change_scene("res://scenes/GameSceneLevel4.tscn")
+    elif GameSingleton.current_level == 5:
+        get_tree().change_scene("res://scenes/GameSceneLevel5.tscn")
+    elif GameSingleton.current_level == 6:
+        get_tree().change_scene("res://scenes/GameSceneLevel6.tscn")
+    elif GameSingleton.current_level == 7:
+        get_tree().change_scene("res://scenes/GameSceneLevel7.tscn")
     else:
-        get_tree().change_scene("res://scenes/TitleScreen.tscn")
+        get_tree().change_scene("res://scenes/CreditScene.tscn")
 
 func _on_Timer_timeout():
     if is_bonus_stage:
