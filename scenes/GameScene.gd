@@ -22,6 +22,8 @@ var level_lost = false
 
 var current_level_number
 
+var canvasLayer = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     randomize()
@@ -30,6 +32,7 @@ func _ready():
     stain_cleaned_label = $CanvasLayer/HUD/Panel/HBoxContainer/StainCountLabel
     score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
     health_label = $CanvasLayer/HUD/Panel/HBoxContainer/HealthLabel
+    canvasLayer = $CanvasLayer
     
     current_level_number = GameSingleton.current_level
     
@@ -41,9 +44,8 @@ func _ready():
     
     spawn_trash()
     count_trash()
+    update_stain_stats()
     update_trash_stats()
-    
-    print ("Counted " + str(trash_count))
     
 func update_trash_stats():
     update_stats(trash_in_dumpster, trash_count)
@@ -72,6 +74,7 @@ func spawn_trash():
         $Collectibles.add_child(trash)
 
 func update_stats(trash_carried, trash_carried_max):
+    
     var text_to_show = str(trash_carried) + "/" + str(trash_carried_max)
     trash_carried_label.text = text_to_show
     

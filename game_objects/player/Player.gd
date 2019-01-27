@@ -43,6 +43,9 @@ const MAX_GRAVITY = 400
 export (int) var gravity = 18
 export (int) var speed = 200
 export (int) var jump_speed = 400
+export (int) var trampoline_jump_speed = 700
+
+var jumped_on_trampoline = false
 
 enum states {IDLE, WALK, JUMP, FALL}
 var state
@@ -65,8 +68,12 @@ func _change_state(new_state):
             anim.play("Move")
         states.JUMP:
             anim.play("Jump")
-            $jumpSound.play()
-            velocity.y = -jump_speed
+            if jumped_on_trampoline:
+                $bounceOffSound.play()
+                velocity.y = -trampoline_jump_speed
+            else:
+                $jumpSound.play()
+                velocity.y = -jump_speed
 
     state = new_state
 
@@ -89,6 +96,7 @@ func _physics_process(delta):
     
     if has_speaker:
         if Input.is_action_just_pressed("ui_clean"):
+            self.get_parent().canvasLayer.hide_speaker_control()
             if collected_object.playing:
                 collected_object.stop_music()
             else:
@@ -99,6 +107,7 @@ func _physics_process(delta):
         var broom_type = collected_object.broom_type
         
         if Input.is_action_just_pressed("ui_clean"):
+            self.get_parent().canvasLayer.hide_broom_control()
             collected_object.position.y = collected_object.position.y + put_down_distance 
             brooming = true   
             active_broom_type = broom_type
@@ -144,6 +153,7 @@ func apply_gravity():
 
 func _input(event):
     if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
+        jumped_on_trampoline = false
         return _change_state(states.JUMP)
    
     # Door enter 
@@ -171,6 +181,11 @@ func move():
         
         if collider.is_in_group("collectable_on_touch"):
             collider.collect(self)
+            
+        if collider.is_in_group("trampoline"):
+            # Jump
+            jumped_on_trampoline = true
+            _change_state(states.JUMP)
     
 func _unhandled_input(event):
      if event is InputEventKey:
@@ -188,9 +203,11 @@ func _unhandled_input(event):
                 else:
                     $pickupMetalSound.play()
             elif collected_object.is_in_group("broom"): 
+                self.get_parent().canvasLayer.show_broom_control()        
                 print ("broom")                                
                 has_broom = true
             elif collected_object.is_in_group("speaker"):
+                self.get_parent().canvasLayer.show_speaker_control()
                 print("speaker")
                 has_speaker = true
                 collected_object.notify_player_takes()
@@ -264,8 +281,10 @@ func _unhandled_input(event):
         elif event.pressed and event.scancode == KEY_F and collected_object:            
             collected_object.position.y = collected_object.position.y + put_down_distance 
             if collected_object.is_in_group("broom"): 
+                self.get_parent().canvasLayer.hide_broom_control()
                 has_broom = false
             if collected_object.is_in_group("speaker"): 
+                self.get_parent().canvasLayer.hide_speaker_control()
                 has_speaker = false
                 collected_object.notify_player_puts_back()
             collected_object = null
@@ -290,7 +309,7 @@ func unset_current_interactor(interactor):
         print("Interactor unset")
         
 func do_update_stats():
-    owner.update_stats(trash_handled, trash_max)
+    #owner.update_stats(trash_handled, trash_max)
     owner.update_health(current_health)
 
         

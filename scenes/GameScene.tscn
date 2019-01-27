@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -15,8 +15,9 @@
 [ext_resource path="res://game_objects/mechanics/Speaker.tscn" type="PackedScene" id=13]
 [ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=14]
 [ext_resource path="res://game_objects/mechanics/Spikes.tscn" type="PackedScene" id=15]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=16]
-[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://game_objects/mechanics/Trampoline.tscn" type="PackedScene" id=16]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=18]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,6 +43,7 @@ editor/display_folded = true
 position = Vector2( 712.094, 214.823 )
 
 [node name="Collectibles" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )
@@ -214,12 +216,15 @@ stain_style = 2
 [node name="Spikes" parent="Mechanics" instance=ExtResource( 15 )]
 position = Vector2( 368, 912 )
 
+[node name="Trampoline" parent="Mechanics" instance=ExtResource( 16 )]
+position = Vector2( -128, 1104 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 250.0
 one_shot = true
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 16 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -236,7 +241,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 17 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 18 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]
