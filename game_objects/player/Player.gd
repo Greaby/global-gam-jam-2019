@@ -175,22 +175,33 @@ func _unhandled_input(event):
                     
         # Dropping trash bag to dumpster           
         elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster: 
-            if collected_object.is_in_group("trash_item") or collected_object.is_in_group("trash_bag"):             
+            if collected_object.is_in_group("trash_item") or collected_object.is_in_group("trash_bag"):   
+            
+                var items_emptied = 1
+                
+                if collected_object.is_in_group("trash_bag"):
+                    items_emptied = collected_object.contents
+                      
                 $emptyTrashSound.play()
                 collected_object.delete()
                 collected_object = null   
-                     
-                score_points(100)
+                    
+                # Bigger points for emptying full bags
+                var points_table = [0, 10, 20, 30, 100] 
+                    
+                score_points(points_table[items_emptied])
                 
-                owner.notify_trash_deposited(4)
+                owner.notify_trash_deposited(items_emptied)
+                
         # Picking up trashbag if can is full
         elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
             #print ("trying to pickup")
             
-            if !collides_trashcan.can_add_trash():
+            if collides_trashcan.contents > 0:
                  $pickupGlassSound.play()
                  $pickupMetalSound.play()
-                 var bag = trash_bag.instance()                
+                 var bag = trash_bag.instance()
+                 bag.contents = collides_trashcan.contents     
                  self.get_parent().add_child(bag)
                  collected_object = bag
                  collides_trashcan.empty_trash()
