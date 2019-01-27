@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game_objects/mechanics/Broom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=9]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=10]
-[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game_objects/mechanics/Toilet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=12]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,9 +28,10 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 262151, 85, 0, 327682, 94, 0, 327686, 94, 0, 327687, 86, 0, 327692, 94, 0, 327695, 94, 0, 327700, 94, 0, 327703, 94, 0, 327705, 22, 0, 393217, 536870984, 0, 393221, 536870989, 0, 393222, 536870988, 0, 393240, 91, 0, 458753, 536870985, 0, 458756, 93, 0, 458757, 84, 0, 458758, 84, 0, 458759, 83, 0, 458772, 88, 0, 458773, 89, 0, 458774, 90, 0, 458775, 80, 0, 458776, 92, 0, 589835, 86, 0, 655362, 94, 0, 655366, 94, 0, 655371, 18, 0, 655372, 94, 0, 655376, 87, 0, 655377, 87, 0, 655380, 94, 0, 655383, 94, 0, 655385, 21, 0, 720897, 536870984, 0, 786433, 536870985, 0, 786437, 81, 0, 786438, 82, 0, 786446, 74, 0, 786447, 75, 0, 786452, 81, 0, 786453, 82, 0, 1638442, 536870977, 0, 1638443, 536870976, 0, 1638444, 536870975, 0, 1703953, 20, 0, 1703954, 18, 0, 1703978, 536870980, 0, 1703979, 536870979, 0, 1703980, 536870978, 0, 1703982, 536870973, 0, 1769514, 69, 0, 1769515, 70, 0, 1769516, 536870981, 0, 1769518, 536870974, 0, 1835032, 18, 0, 1966108, 18, 0 )
+tile_data = PoolIntArray( 262151, 85, 0, 327682, 94, 0, 327686, 94, 0, 327687, 86, 0, 327692, 94, 0, 327695, 94, 0, 327700, 94, 0, 327703, 94, 0, 327705, 22, 0, 393217, 536870984, 0, 393221, 536870989, 0, 393222, 536870988, 0, 393240, 91, 0, 458753, 536870985, 0, 458756, 93, 0, 458757, 84, 0, 458758, 84, 0, 458759, 83, 0, 458772, 88, 0, 458773, 89, 0, 458774, 90, 0, 458775, 80, 0, 458776, 92, 0, 589835, 86, 0, 655362, 94, 0, 655366, 94, 0, 655371, 18, 0, 655372, 94, 0, 655376, 87, 0, 655377, 87, 0, 655380, 94, 0, 655383, 94, 0, 655385, 21, 0, 720897, 61, 0, 786433, 62, 0, 786437, 81, 0, 786438, 82, 0, 786446, 74, 0, 786447, 75, 0, 786452, 81, 0, 786453, 82, 0, 1638442, 536870977, 0, 1638443, 536870976, 0, 1638444, 536870975, 0, 1703953, 20, 0, 1703954, 18, 0, 1703978, 536870980, 0, 1703979, 536870979, 0, 1703980, 536870978, 0, 1703982, 536870973, 0, 1769514, 69, 0, 1769515, 70, 0, 1769516, 536870981, 0, 1769518, 536870974, 0, 1835032, 18, 0, 1966108, 18, 0 )
 
 [node name="Spawners" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="TrashSpawner" type="Position2D" parent="Spawners"]
 position = Vector2( 544, 240 )
@@ -123,12 +125,15 @@ stain_style = 1
 position = Vector2( 1312, 896 )
 stain_style = 2
 
+[node name="Toilet" parent="Mechanics" instance=ExtResource( 10 )]
+position = Vector2( 48, 400 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 180.0
 one_shot = true
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 10 )]
+[node name="Player" parent="." instance=ExtResource( 11 )]
 editor/display_folded = true
 position = Vector2( 736, 214.823 )
 
@@ -145,7 +150,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 12 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]
