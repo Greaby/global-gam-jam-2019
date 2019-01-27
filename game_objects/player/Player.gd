@@ -43,6 +43,9 @@ const MAX_GRAVITY = 400
 export (int) var gravity = 18
 export (int) var speed = 200
 export (int) var jump_speed = 400
+export (int) var trampoline_jump_speed = 600
+
+var jumped_on_trampoline = false
 
 enum states {IDLE, WALK, JUMP, FALL}
 var state
@@ -66,7 +69,10 @@ func _change_state(new_state):
         states.JUMP:
             anim.play("Jump")
             $jumpSound.play()
-            velocity.y = -jump_speed
+            if jumped_on_trampoline:
+                velocity.y = -trampoline_jump_speed
+            else:
+                velocity.y = -jump_speed
 
     state = new_state
 
@@ -144,6 +150,7 @@ func apply_gravity():
 
 func _input(event):
     if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
+        jumped_on_trampoline = false
         return _change_state(states.JUMP)
    
     # Door enter 
@@ -171,6 +178,11 @@ func move():
         
         if collider.is_in_group("collectable_on_touch"):
             collider.collect(self)
+            
+        if collider.is_in_group("trampoline"):
+            # Jump
+            jumped_on_trampoline = true
+            _change_state(states.JUMP)
     
 func _unhandled_input(event):
      if event is InputEventKey:
