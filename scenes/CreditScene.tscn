@@ -1,0 +1,226 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scenes/CreditScene.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/credits/greaby_name.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/credits/code.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/credits/art.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/credits/redcup.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/credits/pinkcan.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/credits/adelina_name.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/credits/david_name.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/credits/megan_name.png" type="Texture" id=9]
+[ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=10]
+[ext_resource path="res://game_objects/mechanics/TrashBag.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game_objects/collectables/TrashPiece.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/sprites/credits/davidG_name.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/credits/sound.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/credits/music.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/credits/thank_you.png" type="Texture" id=16]
+[ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=17]
+[ext_resource path="res://assets/sprites/credits/test.png" type="Texture" id=18]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "MovingCar"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 29.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 60, 277.145 ), Vector2( 2000, 277.145 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "CarBump"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Car:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0845504, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 2 ) ]
+}
+
+[node name="CreditScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="HUD" type="Control" parent="."]
+margin_left = -15.3002
+margin_top = 40.5469
+margin_right = 752.7
+margin_bottom = 334.547
+
+[node name="Greaby_name" type="Sprite" parent="HUD"]
+position = Vector2( 358.82, 197.316 )
+texture = ExtResource( 2 )
+
+[node name="Greaby_code" type="Sprite" parent="HUD"]
+position = Vector2( 353.592, 248.204 )
+texture = ExtResource( 3 )
+
+[node name="Greaby_art" type="Sprite" parent="HUD"]
+position = Vector2( 344.013, 226.197 )
+texture = ExtResource( 4 )
+
+[node name="Greaby_redcup" type="Sprite" parent="HUD"]
+position = Vector2( 305, 249 )
+texture = ExtResource( 5 )
+
+[node name="Greaby_pinkcan" type="Sprite" parent="HUD"]
+position = Vector2( 305, 225 )
+texture = ExtResource( 6 )
+
+[node name="Adelina_name" type="Sprite" parent="HUD"]
+position = Vector2( 661.231, 166.299 )
+texture = ExtResource( 7 )
+
+[node name="Adelina_code" type="Sprite" parent="HUD"]
+position = Vector2( 601.987, 233.605 )
+texture = ExtResource( 3 )
+
+[node name="Adelina_art" type="Sprite" parent="HUD"]
+position = Vector2( 597, 208 )
+texture = ExtResource( 4 )
+
+[node name="Adelina_redcup" type="Sprite" parent="HUD"]
+position = Vector2( 553.3, 233.453 )
+texture = ExtResource( 5 )
+
+[node name="Adelina_pinkcan" type="Sprite" parent="HUD"]
+position = Vector2( 553.3, 208.453 )
+texture = ExtResource( 6 )
+
+[node name="David_name" type="Sprite" parent="HUD"]
+position = Vector2( 953.302, 183.1 )
+texture = ExtResource( 8 )
+
+[node name="David_code" type="Sprite" parent="HUD"]
+position = Vector2( 894.79, 223.204 )
+texture = ExtResource( 3 )
+
+[node name="David_pinkcan" type="Sprite" parent="HUD"]
+position = Vector2( 845, 222.415 )
+texture = ExtResource( 6 )
+
+[node name="Megan_name" type="Sprite" parent="HUD"]
+position = Vector2( 1200.14, 159.838 )
+texture = ExtResource( 9 )
+
+[node name="Megan_art" type="Sprite" parent="HUD"]
+position = Vector2( 1158, 201 )
+texture = ExtResource( 4 )
+
+[node name="Megan_redcup" type="Sprite" parent="HUD"]
+editor/display_folded = true
+position = Vector2( 1119.3, 202.453 )
+texture = ExtResource( 5 )
+
+[node name="Dumpster" parent="HUD/Megan_redcup" instance=ExtResource( 10 )]
+position = Vector2( -643.483, 70.1771 )
+
+[node name="TrashBag" parent="HUD/Megan_redcup" instance=ExtResource( 11 )]
+position = Vector2( -610.208, 71.4315 )
+
+[node name="TrashBag" parent="HUD/Megan_redcup/TrashBag" instance=ExtResource( 11 )]
+position = Vector2( 20.8362, 3.76306 )
+
+[node name="TrashBag2" parent="HUD/Megan_redcup/TrashBag" instance=ExtResource( 11 )]
+position = Vector2( -100, 2.38269 )
+
+[node name="TrashPiece" parent="HUD/Megan_redcup/TrashBag" instance=ExtResource( 12 )]
+position = Vector2( -33.7631, -35.1952 )
+trash_type = 0
+
+[node name="DavidG_name" type="Sprite" parent="HUD"]
+position = Vector2( 1395.3, 149.453 )
+texture = ExtResource( 13 )
+
+[node name="DavidG_art" type="Sprite" parent="HUD"]
+position = Vector2( 1385.3, 195.453 )
+texture = ExtResource( 4 )
+
+[node name="David_redcup" type="Sprite" parent="HUD"]
+position = Vector2( 1335.3, 242.453 )
+texture = ExtResource( 5 )
+
+[node name="David_redcup2" type="Sprite" parent="HUD"]
+position = Vector2( 1336.3, 195.453 )
+texture = ExtResource( 5 )
+
+[node name="DavidG_code" type="Sprite" parent="HUD"]
+position = Vector2( 1395, 217.453 )
+texture = ExtResource( 3 )
+
+[node name="DavidG_sound" type="Sprite" parent="HUD"]
+position = Vector2( 1402, 242.453 )
+texture = ExtResource( 14 )
+
+[node name="DavidG_music" type="Sprite" parent="HUD"]
+position = Vector2( 1402, 266.453 )
+texture = ExtResource( 15 )
+
+[node name="David_pinkcan2" type="Sprite" parent="HUD"]
+position = Vector2( 1338.3, 217.453 )
+texture = ExtResource( 6 )
+
+[node name="David_pinkcan3" type="Sprite" parent="HUD"]
+position = Vector2( 1338.3, 265.453 )
+texture = ExtResource( 6 )
+
+[node name="Thank_you" type="Sprite" parent="HUD"]
+position = Vector2( 1713.22, 203.374 )
+texture = ExtResource( 16 )
+
+[node name="TileMap4" type="TileMap" parent="HUD"]
+position = Vector2( 15.3002, -40.5469 )
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 589843, 76, 0, 589844, 77, 0, 589846, 76, 0, 589847, 77, 0, 655375, 76, 0, 655376, 77, 0, 655385, 76, 0, 655386, 77, 0, 655390, 76, 0, 655391, 77, 0, 655392, 77, 0, 655393, 76, 0, 655394, 77, 0, 655395, 77, 0 )
+
+[node name="Car" type="Sprite" parent="HUD"]
+editor/display_folded = true
+position = Vector2( 84.2374, 276.795 )
+texture = ExtResource( 18 )
+offset = Vector2( 0, 1.31566 )
+
+[node name="Camera2D" type="Camera2D" parent="HUD/Car"]
+offset = Vector2( 90, -70 )
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+anims/MovingCar = SubResource( 1 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="HUD"]
+anims/CarBump = SubResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 655375, 76, 0, 655376, 77, 0, 655385, 76, 0, 655386, 77, 0, 655390, 76, 0, 655391, 77, 0, 655392, 77, 0, 655393, 76, 0, 655394, 77, 0, 655395, 77, 0 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 655374, 76, 0, 655375, 77, 0, 655390, 76, 0, 655391, 76, 0, 655392, 77, 0, 655395, 536870989, 0, 655396, 536870988, 0 )
+
+[node name="TileMap3" type="TileMap" parent="."]
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 655390, 76, 0, 655391, 536870989, 0, 655392, 77, 0, 655394, 536870989, 0, 655395, 536870988, 0, 655396, 77, 0 )
+
