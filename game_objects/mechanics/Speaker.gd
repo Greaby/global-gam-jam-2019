@@ -4,6 +4,8 @@ var playing = false
 
 var sleeper_nearby = null
 
+var ignored_while_away = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
@@ -48,7 +50,9 @@ func notify_player_takes():
     $Timer.stop()
     if playing:
         GameSingleton.att_lvl_music_volume()
-        $MusicLoop.play()
+        if ignored_while_away:
+            ignored_while_away = false
+            $MusicLoop.play()
     
 
 func notify_player_puts_back():
@@ -59,5 +63,6 @@ func notify_player_puts_back():
 
 func _on_Timer_timeout():
     if playing:
+        ignored_while_away = true
         GameSingleton.stop_att_lvl_music_volume()
         $MusicLoop.stop()
