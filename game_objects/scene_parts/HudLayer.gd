@@ -50,4 +50,21 @@ func animation_show_ready(step):
         $HUD/StartPanel/StartLabel.text = "!!! CLEAN !!!"
     if step == 3:
         $HUD/StartPanel.visible = false
+        
+func show_broom_control():
+    $HUD/InfoPanel.visible = true
+    $HUD/InfoPanel/InfoLabel.text = "PRESS C TO CLEAN"
+    
+func hide_broom_control():
+    $HUD/InfoPanel/InfoLabel.text = ""
+    $HUD/InfoPanel.visible = false
+    
+    
+func show_speaker_control():
+    $HUD/InfoPanel.visible = true
+    $HUD/InfoPanel/InfoLabel.text = "PRESS C TO PLAY MUSIC"
+    
+func hide_speaker_control():
+    $HUD/InfoPanel/InfoLabel.text = ""
+    $HUD/InfoPanel.visible = false
      

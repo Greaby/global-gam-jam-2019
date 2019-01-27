@@ -22,6 +22,8 @@ var level_lost = false
 
 var current_level_number
 
+var canvasLayer = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
@@ -29,6 +31,7 @@ func _ready():
     stain_cleaned_label = $CanvasLayer/HUD/Panel/HBoxContainer/StainCountLabel
     score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
     health_label = $CanvasLayer/HUD/Panel/HBoxContainer/HealthLabel
+    canvasLayer = $CanvasLayer
     
     current_level_number = GameSingleton.current_level
     

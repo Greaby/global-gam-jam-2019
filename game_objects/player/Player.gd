@@ -89,6 +89,7 @@ func _physics_process(delta):
     
     if has_speaker:
         if Input.is_action_just_pressed("ui_clean"):
+            self.get_parent().canvasLayer.hide_speaker_control()
             if collected_object.playing:
                 collected_object.stop_music()
             else:
@@ -99,6 +100,7 @@ func _physics_process(delta):
         var broom_type = collected_object.broom_type
         
         if Input.is_action_just_pressed("ui_clean"):
+            self.get_parent().canvasLayer.hide_broom_control()
             collected_object.position.y = collected_object.position.y + put_down_distance 
             brooming = true   
             active_broom_type = broom_type
@@ -188,9 +190,11 @@ func _unhandled_input(event):
                 else:
                     $pickupMetalSound.play()
             elif collected_object.is_in_group("broom"): 
+                self.get_parent().canvasLayer.show_broom_control()        
                 print ("broom")                                
                 has_broom = true
             elif collected_object.is_in_group("speaker"):
+                self.get_parent().canvasLayer.show_speaker_control()
                 print("speaker")
                 has_speaker = true
                 collected_object.notify_player_takes()
@@ -254,8 +258,10 @@ func _unhandled_input(event):
         elif event.pressed and event.scancode == KEY_F and collected_object:            
             collected_object.position.y = collected_object.position.y + put_down_distance 
             if collected_object.is_in_group("broom"): 
+                self.get_parent().canvasLayer.hide_broom_control()
                 has_broom = false
             if collected_object.is_in_group("speaker"): 
+                self.get_parent().canvasLayer.hide_speaker_control()
                 has_speaker = false
                 collected_object.notify_player_puts_back()
             collected_object = null
