@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/logo/game_logo.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/sounds/throw_bag.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -43,6 +44,25 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="Animation" id=4]
+
+resource_name = "press_start_fast"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,5 +87,11 @@ align = 1
 autoplay = "enter"
 anims/enter = SubResource( 2 )
 anims/press_start = SubResource( 3 )
+anims/press_start_fast = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -6.342
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
