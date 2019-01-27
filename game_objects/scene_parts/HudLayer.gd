@@ -67,4 +67,8 @@ func show_speaker_control():
 func hide_speaker_control():
     $HUD/InfoPanel/InfoLabel.text = ""
     $HUD/InfoPanel.visible = false
+    
+func show_bonus_stage():
+    $HUD/Panel/HBoxContainer/CarProgress.visible = false
+    $HUD/Panel/HBoxContainer/BonusLabel.visible = true
      
