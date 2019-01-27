@@ -79,10 +79,12 @@ func _physics_process(delta):
     if has_broom:
         if Input.is_action_just_pressed("ui_clean"):
             collected_object.position.y = collected_object.position.y + put_down_distance 
-            brooming = true            
+            brooming = true      
+            $vacuumSound.play()      
         if Input.is_action_just_released("ui_clean"):
             collected_object.position.y = collected_object.position.y - put_down_distance
             brooming = false
+            $vacuumSound.stop()
 
     match state:
         states.IDLE:
