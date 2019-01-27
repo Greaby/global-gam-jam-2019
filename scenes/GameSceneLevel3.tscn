@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
+[ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://game_objects/mechanics/Sleeper.gd" type="Script" id=3]
+[ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/mechanics/Broom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=8]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 196608, 37, 0, 196609, 38, 0, 196610, 38, 0, 196611, 38, 0, 196612, 38, 0, 196613, 38, 0, 196614, 38, 0, 196615, 38, 0, 196616, 38, 0, 196617, 37, 0, 196618, 38, 0, 196619, 38, 0, 196620, 38, 0, 196621, 38, 0, 196622, 38, 0, 196623, 38, 0, 196624, 38, 0, 196625, 38, 0, 196626, 37, 0, 196627, 38, 0, 196628, 38, 0, 196629, 38, 0, 196630, 38, 0, 196631, 38, 0, 196632, 38, 0, 196633, 38, 0, 196634, 37, 0, 262144, 32, 0, 262145, 45, 0, 262146, 45, 0, 262147, 45, 0, 262148, 45, 0, 262149, 45, 0, 262150, 45, 0, 262151, 45, 0, 262152, 45, 0, 262153, 32, 0, 262154, 41, 0, 262155, 41, 0, 262156, 41, 0, 262157, 41, 0, 262158, 41, 0, 262159, 41, 0, 262160, 41, 0, 262161, 41, 0, 262162, 32, 0, 262163, 4, 0, 262164, 4, 0, 262165, 4, 0, 262166, 4, 0, 262167, 4, 0, 262168, 4, 0, 262169, 4, 0, 262170, 32, 0, 327680, 32, 0, 327681, 46, 0, 327682, 46, 0, 327683, 46, 0, 327684, 46, 0, 327685, 46, 0, 327686, 46, 0, 327687, 46, 0, 327688, 46, 0, 327689, 33, 0, 327690, 41, 0, 327691, 41, 0, 327692, 41, 0, 327693, 41, 0, 327694, 41, 0, 327695, 41, 0, 327696, 41, 0, 327697, 41, 0, 327698, 33, 0, 327699, 4, 0, 327700, 4, 0, 327701, 4, 0, 327702, 4, 0, 327703, 4, 0, 327704, 4, 0, 327705, 4, 0, 327706, 32, 0, 393216, 32, 0, 393217, 45, 0, 393218, 45, 0, 393219, 45, 0, 393220, 45, 0, 393221, 45, 0, 393222, 45, 0, 393223, 45, 0, 393224, 45, 0, 393225, 48, 0, 393226, 41, 0, 393227, 41, 0, 393228, 41, 0, 393229, 41, 0, 393230, 41, 0, 393231, 41, 0, 393232, 41, 0, 393233, 41, 0, 393234, 48, 0, 393235, 4, 0, 393236, 4, 0, 393237, 4, 0, 393238, 4, 0, 393239, 4, 0, 393240, 4, 0, 393241, 4, 0, 393242, 32, 0, 458752, 32, 0, 458753, 45, 0, 458754, 45, 0, 458755, 45, 0, 458756, 45, 0, 458757, 45, 0, 458758, 45, 0, 458759, 45, 0, 458760, 45, 0, 458761, 49, 0, 458762, 42, 0, 458763, 42, 0, 458764, 42, 0, 458765, 42, 0, 458766, 42, 0, 458767, 42, 0, 458768, 42, 0, 458769, 42, 0, 458770, 49, 0, 458771, 4, 0, 458772, 4, 0, 458773, 4, 0, 458774, 4, 0, 458775, 4, 0, 458776, 4, 0, 458777, 4, 0, 458778, 32, 0, 524288, 36, 0, 524289, 38, 0, 524290, 38, 0, 524291, 38, 0, 524292, 38, 0, 524293, 38, 0, 524294, 38, 0, 524295, 38, 0, 524296, 38, 0, 524297, 37, 0, 524298, 38, 0, 524299, 38, 0, 524300, 38, 0, 524301, 38, 0, 524302, 38, 0, 524303, 38, 0, 524304, 38, 0, 524305, 38, 0, 524306, 37, 0, 524307, 38, 0, 524308, 38, 0, 524309, 38, 0, 524310, 38, 0, 524311, 38, 0, 524312, 38, 0, 524313, 38, 0, 524314, 34, 0, 2162719, 30, 0 )
+
+[node name="TileMapForeground" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262149, 85, 0, 327682, 94, 0, 327683, 87, 0, 327684, 87, 0, 327685, 86, 0, 327686, 94, 0, 327687, 87, 0, 327691, 94, 0, 327695, 94, 0, 327701, 94, 0, 393228, 76, 0, 393229, 77, 0, 393241, 91, 0, 458756, 84, 0, 458757, 83, 0, 458758, 84, 0, 458763, 536870992, 0, 458764, 78, 0, 458765, 79, 0, 458766, 80, 0, 458767, 84, 0, 458768, 93, 0, 458774, 88, 0, 458775, 89, 0, 458776, 90, 0, 458777, 92, 0 )
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Mechanics" type="Node2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="LateralDoor" parent="Mechanics" instance=ExtResource( 4 )]
+position = Vector2( 303.97, 224.014 )
+
+[node name="LateralDoor2" parent="Mechanics" instance=ExtResource( 4 )]
+position = Vector2( 592, 224 )
+direction = 1
+
+[node name="VacuumCleaner" parent="Mechanics" instance=ExtResource( 5 )]
+position = Vector2( 96, 240 )
+
+[node name="Mop" parent="Mechanics" instance=ExtResource( 5 )]
+position = Vector2( 64, 240 )
+broom_type = 1
+
+[node name="Stain" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 672, 256 )
+stain_style = 0
+
+[node name="Stain2" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 512, 256 )
+stain_style = 0
+
+[node name="Stain5" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 544, 256.014 )
+stain_style = 0
+
+[node name="Stain3" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 232, 256 )
+stain_style = 1
+
+[node name="Stain4" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 368, 256 )
+stain_style = 2
+
+[node name="Stain6" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 396, 256 )
+stain_style = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+editor/display_folded = true
+position = Vector2( 448, 208 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="TileMapFront" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 8 )]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]
