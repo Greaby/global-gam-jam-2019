@@ -21,9 +21,9 @@ func _on_FadeAnimation_animation_finished(anim_name):
         emit_signal("fade_finished")
 
 
-func show_level_complete(time_bonus):
+func show_level_complete(time_bonus, secrets_found, secrets_total):
     $HUD/CenterPanel.visible = true
-    var text_to_show = "CLEANING COMPLETE!\nTIME BONUS: " + str(time_bonus)
+    var text_to_show = "CLEANING COMPLETE!\nTIME BONUS: " + str(time_bonus) + "\n\nSECRETS FOUND: " + str(secrets_found) + "/" + str(secrets_total)
     $HUD/CenterPanel/CenterLabel.text = text_to_show
 
 
@@ -34,11 +34,11 @@ func animate_start_panel(level_number):
 
 func animation_show_ready(step):
     if step == 0:
-        $HUD/StartPanel/StartLabel.text = "READY"
+        $HUD/StartPanel/StartLabel.text = "*** READY ***"
     if step == 1:
-        $HUD/StartPanel/StartLabel.text = "SET"
+        $HUD/StartPanel/StartLabel.text = "**  SET  **"
     if step == 2:
-        $HUD/StartPanel/StartLabel.text = "CLEAN"
+        $HUD/StartPanel/StartLabel.text = "!!! CLEAN !!!"
     if step == 3:
         $HUD/StartPanel.visible = false
      

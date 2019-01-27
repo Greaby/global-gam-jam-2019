@@ -41,7 +41,6 @@ editor/display_folded = true
 position = Vector2( 712.094, 214.823 )
 
 [node name="Collectibles" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )

@@ -136,7 +136,7 @@ func level_complete():
     $Player.move_enabled = false
     $Timer.set_paused(true)
     var time_bonus = int($Timer.time_left) * 10
-    $CanvasLayer.show_level_complete(time_bonus)
+    $CanvasLayer.show_level_complete(time_bonus, secrets_found, secrets_count)
     $Player.score_points_no_popup(time_bonus)
     #Save score
     GameSingleton.current_score = $Player.current_score
