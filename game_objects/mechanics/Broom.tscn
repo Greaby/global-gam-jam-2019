@@ -1,13 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game_objects/mechanics/Broom.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/vacuum.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/vacuum2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/brush.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 extents = Vector2( 16, 16 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
+
+resource_name = "brush"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Brush:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10, 0 ), Vector2( 17, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 
 resource_name = "idle"
 length = 0.4
@@ -23,23 +43,70 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/VacuumSrub:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Brush:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource_name = "vacuum"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites:position")
+tracks/0/path = NodePath("Sprites/VacuumSrub:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/VacuumSrub:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10, 0 ), Vector2( 20, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/VacuumItem:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, 0 ), Vector2( 2, 0 ) ]
+"values": [ false ]
 }
 
 [node name="Broom" type="Node2D" groups=[
@@ -54,19 +121,23 @@ shape = SubResource( 1 )
 
 [node name="Sprites" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Sprites"]
-scale = Vector2( 0.5, 0.5 )
+[node name="VacuumItem" type="Sprite" parent="Sprites"]
 texture = ExtResource( 2 )
 
-[node name="Sprite2" type="Sprite" parent="Sprites"]
+[node name="VacuumSrub" type="Sprite" parent="Sprites"]
 visible = false
-self_modulate = Color( 0.309804, 1, 0, 1 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+position = Vector2( 10, 0 )
+texture = ExtResource( 3 )
+
+[node name="Brush" type="Sprite" parent="Sprites"]
+visible = false
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 3 )
-anims/vacuum = SubResource( 2 )
+autoplay = "idle"
+anims/brush = SubResource( 4 )
+anims/idle = SubResource( 2 )
+anims/vacuum = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
