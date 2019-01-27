@@ -5,6 +5,7 @@ extends Control
 # var b = "text"
 
 var anim_done = false
+var play_done = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +28,10 @@ func _input(event):
         print("accept")
         
         if anim_done:
-            go_to_next_scene()
+            if not play_done:
+                $AudioStreamPlayer.play()
+                $AnimationPlayer.play("press_start_fast")
+                play_done = true
         else:
             #End frame
             $AnimationPlayer.seek(2, true)
@@ -37,7 +41,10 @@ func _input(event):
 func go_to_next_scene():
     GameSingleton.current_level = 1
     GameSingleton.current_score = 0
-    get_tree().change_scene("res://scenes/GameScene.tscn")
+    get_tree().change_scene("res://scenes/IntroScreen.tscn")
 
     
     
+
+func _on_AudioStreamPlayer_finished():
+    go_to_next_scene()
