@@ -32,6 +32,7 @@ var current_life = 3
 var current_health = 3
 
 var has_broom = false
+var has_speaker = false
 
 var brooming = false
 var active_broom_type = 0
@@ -85,6 +86,13 @@ func _physics_process(delta):
     
     update_direction()
     apply_gravity()
+    
+    if has_speaker:
+        if Input.is_action_just_pressed("ui_clean"):
+            if collected_object.playing:
+                collected_object.stop_music()
+            else:
+                collected_object.play_music()
     
     if has_broom:
         
@@ -182,6 +190,9 @@ func _unhandled_input(event):
             elif collected_object.is_in_group("broom"): 
                 print ("broom")                                
                 has_broom = true
+            elif collected_object.is_in_group("speaker"):
+                print("speaker")
+                has_speaker = true
             print ("collecting")
             
         # Dropping object to trashCan    
@@ -243,6 +254,8 @@ func _unhandled_input(event):
             collected_object.position.y = collected_object.position.y + put_down_distance 
             if collected_object.is_in_group("broom"): 
                 has_broom = false
+            if collected_object.is_in_group("speaker"): 
+                has_speaker = false
             collected_object = null
             if collides_trashcan:
                 collides_trashcan
