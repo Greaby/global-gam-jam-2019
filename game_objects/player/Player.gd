@@ -241,8 +241,7 @@ func _unhandled_input(event):
                     
         # Dropping trash bag to dumpster           
         elif event.pressed and event.scancode == KEY_F and collected_object and collides_dumpster: 
-            if collected_object.is_in_group("trash_item") or collected_object.is_in_group("trash_bag"): 
-                self.get_parent().delay_if_possible()  
+            if collected_object.is_in_group("trash_item") or collected_object.is_in_group("trash_bag"):                
             
                 var items_emptied = 1
                 
@@ -266,6 +265,7 @@ func _unhandled_input(event):
                 score_points(points_table[items_emptied])
                 
                 owner.notify_trash_deposited(items_emptied)
+                self.get_parent().delay_if_possible()  
                 
         # Picking up trashbag if can is full
         elif event.pressed and event.scancode == KEY_F and collected_object == null and collides_trashcan:
