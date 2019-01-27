@@ -34,6 +34,7 @@ var current_health = 3
 var has_broom = false
 
 var brooming = false
+var active_broom_type = 0
 
 onready var anim = $anim
 
@@ -86,14 +87,24 @@ func _physics_process(delta):
     apply_gravity()
     
     if has_broom:
+        
+        var broom_type = collected_object.broom_type
+        
         if Input.is_action_just_pressed("ui_clean"):
             collected_object.position.y = collected_object.position.y + put_down_distance 
-            brooming = true      
-            $vacuumSound.play()      
+            brooming = true   
+            active_broom_type = broom_type
+            if broom_type == 0:
+                $vacuumSound.play()      
+            if broom_type == 1:
+                $scrubSound.play()      
         if Input.is_action_just_released("ui_clean"):
             collected_object.position.y = collected_object.position.y - put_down_distance
             brooming = false
-            $vacuumSound.stop()
+            if broom_type == 0:
+                $vacuumSound.stop()
+            if broom_type == 1:
+                $scrubSound.stop()
 
     match state:
         states.IDLE:

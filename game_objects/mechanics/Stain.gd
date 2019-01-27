@@ -12,19 +12,23 @@ func _ready():
 #    pass
 var clean_timer = 0
 
+var required_broom_type = 0
+
 var collides_player = null
 
 func editor_set_stain_style(style):
     stain_style = style
     $Sprite.region_rect.position.x = 32 + 32 * stain_style
+    # Auto set broom type that works on this stain
+    var broom_types = [0, 1, 1]
+    required_broom_type = broom_types[style]
 
 func _physics_process(delta):
-    if collides_player and collides_player.brooming:
+    if collides_player and collides_player.brooming and collides_player.active_broom_type == required_broom_type:
         if clean_timer == 0:            
             clean_timer = 1
         if clean_timer > 0:
-            print ("dvdsvds")
-            print(clean_timer)
+            #print(clean_timer)
             clean_timer = clean_timer - delta
             if clean_timer <= 0:
                 collides_player.notify_stain_cleaned()
@@ -38,7 +42,7 @@ func _on_Area2D_body_entered(body):
         collides_player = body
         if body.brooming:    
            clean_timer = 1
-           print ("cleaning")   
+           #print ("cleaning")   
 
 
 func _on_Area2D_body_exited(body):

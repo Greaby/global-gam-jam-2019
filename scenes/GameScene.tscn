@@ -184,8 +184,12 @@ door_style = 1
 [node name="Dumpster" parent="Mechanics" instance=ExtResource( 10 )]
 position = Vector2( 888, 1040 )
 
-[node name="Broom" parent="Mechanics" instance=ExtResource( 11 )]
-position = Vector2( 528, 236 )
+[node name="VacuumCleaner" parent="Mechanics" instance=ExtResource( 11 )]
+position = Vector2( 488, 400 )
+
+[node name="Mop" parent="Mechanics" instance=ExtResource( 11 )]
+position = Vector2( 560, 240 )
+broom_type = 1
 
 [node name="Sleeper" parent="Mechanics" instance=ExtResource( 12 )]
 position = Vector2( 672, 400 )

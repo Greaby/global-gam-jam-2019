@@ -1,8 +1,9 @@
+tool
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# 0 for vacuum / 1 for mop
+export var broom_type = 0 setget editor_set_broom_type
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
+
+func editor_set_broom_type(type):
+    broom_type = type
+    if type == 0:
+        # Vacuum
+        $Sprite.visible = true
+        $Sprite2.visible = false
+    if type == 1:
+        # Mop
+        $Sprite.visible = false
+        $Sprite2.visible = true
 
 func _on_Area2D_body_entered(body):
     if body.is_in_group("player"):    
