@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -16,8 +16,9 @@
 [ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=14]
 [ext_resource path="res://game_objects/mechanics/Spikes.tscn" type="PackedScene" id=15]
 [ext_resource path="res://game_objects/mechanics/Trampoline.tscn" type="PackedScene" id=16]
-[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=17]
-[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=18]
+[ext_resource path="res://game_objects/mechanics/Toilet.tscn" type="PackedScene" id=17]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=18]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=19]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -34,7 +35,7 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 327705, 22, 0, 655376, 21, 0, 1703935, 18, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0, 1835032, 18, 0, 2031610, 18, 0, 1966108, 18, 0, 2162679, 18, 0 )
+tile_data = PoolIntArray( 327705, 22, 0, 655376, 21, 0, 1703935, 18, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0, 1703977, 61, 0, 1769513, 62, 0, 1835032, 18, 0, 2031610, 18, 0, 1966108, 18, 0, 2162679, 18, 0 )
 
 [node name="Spawners" type="Node2D" parent="."]
 editor/display_folded = true
@@ -219,12 +220,15 @@ position = Vector2( 368, 912 )
 [node name="Trampoline" parent="Mechanics" instance=ExtResource( 16 )]
 position = Vector2( -128, 1104 )
 
+[node name="Toilet" parent="Mechanics" instance=ExtResource( 17 )]
+position = Vector2( 1328, 880 )
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 250.0
 one_shot = true
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 17 )]
+[node name="Player" parent="." instance=ExtResource( 18 )]
 position = Vector2( 370, 220 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -241,7 +245,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 18 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 19 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]

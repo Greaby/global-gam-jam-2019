@@ -57,6 +57,8 @@ var move_enabled = true
 
 var temp_invincible = false
 
+var toilet_ref = null
+
 func _ready():
     _change_state(states.IDLE)
 
@@ -93,6 +95,10 @@ func _physics_process(delta):
     
     update_direction()
     apply_gravity()
+    
+    if toilet_ref != null:
+        if Input.is_action_just_pressed("ui_clean"):
+            toilet_ref.flush(self)
     
     if has_speaker:
         if Input.is_action_just_pressed("ui_clean"):

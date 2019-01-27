@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/toilet_flush.wav-072c99d0ff943ffb2e321ef72027e14e.sample"
+
+[deps]
+
+source_file="res://assets/sounds/toilet_flush.wav"
+dest_files=[ "res://.import/toilet_flush.wav-072c99d0ff943ffb2e321ef72027e14e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
