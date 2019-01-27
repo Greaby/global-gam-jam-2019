@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://game_objects/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tileset.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sounds/drop_trash_01.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sounds/vacuumcleaner.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/warp_door.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -128,4 +129,9 @@ bus = "echo"
 [node name="vacuumSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = -15.191
+
+[node name="warpDoorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -14.023
+pitch_scale = 0.75
 

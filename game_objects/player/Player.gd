@@ -129,6 +129,7 @@ func _input(event):
 func process_door_enter():
     move_enabled = false
     current_door.enter_door(self)
+    $warpDoorSound.play()
 
 func move():
     velocity.x = input_direction.x * speed
