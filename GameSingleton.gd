@@ -18,6 +18,8 @@ func _input(event):
         if event.pressed:
             if event.scancode == KEY_F11:
                 OS.window_fullscreen = !OS.window_fullscreen
+            if event.scancode == KEY_ESCAPE:
+                get_tree().quit()
                 
 
 func play_overworld_music():
