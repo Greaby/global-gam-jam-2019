@@ -197,6 +197,14 @@ position = Vector2( 448, 416 )
 [node name="Stain2" parent="Mechanics" instance=ExtResource( 14 )]
 position = Vector2( 416, 416 )
 
+[node name="Stain3" parent="Mechanics" instance=ExtResource( 14 )]
+position = Vector2( 216, 416 )
+stain_style = 1
+
+[node name="Stain4" parent="Mechanics" instance=ExtResource( 14 )]
+position = Vector2( 384, 416 )
+stain_style = 2
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 250.0
 one_shot = true

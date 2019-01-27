@@ -1,8 +1,7 @@
+tool
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var stain_style = 0 setget editor_set_stain_style
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +13,11 @@ func _ready():
 var clean_timer = 0
 
 var collides_player = null
+
+func editor_set_stain_style(style):
+    stain_style = style
+    $Sprite.region_rect.position.x = 32 + 32 * stain_style
+
 func _physics_process(delta):
     if collides_player and collides_player.brooming:
         if clean_timer == 0:            
