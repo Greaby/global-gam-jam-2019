@@ -119,11 +119,37 @@ func _physics_process(delta):
     var time_left = int($Timer.time_left) 
     $CanvasLayer/HUD/Panel/HBoxContainer/CarProgress.set_timeleft(time_left, $Timer.get_wait_time())
     timer_label.text = str(time_left).pad_zeros(3)
-    if ($Timer.time_left < 295):
-        #$CanvasLayer/HUD/ParentsAreClose.visible = true
-        pass
-    
-
+ 
+func delay_if_possible():
+    var time_left = int($Timer.time_left) 
+    timer_label.text = str(time_left).pad_zeros(3)
+    if ($Timer.time_left < 20):
+        var rem_time =  $Timer.time_left + 10
+        $Timer.stop()
+        $Timer.start(rem_time)
+        
+        $CanvasLayer/HUD/WarningPanel.visible = true
+        var text = ""
+        randomize()
+        var rnd = randi()%8
+        if rnd == 0:
+            text = "BONUS TIME! Mom has forgot her purse in the car!"
+        elif rnd == 1:
+            text = "BONUS TIME! Dad is talking to the neighbours!"
+        elif rnd == 2:
+            text = "BONUS TIME! Jehovah's Witnesses stoped your parents"
+        elif rnd == 3:
+            text = "BONUS TIME! Mom got kidnaped by aliens"
+        elif rnd == 4:
+            text = "BONUS TIME! Dad run over your cat"
+        elif rnd == 5:
+            text = "BONUS TIME! Mom slipped on a banana peel"
+        else:
+            text = "BONUS TIME! Parents went to supermarket"
+                            
+        $CanvasLayer/HUD/WarningPanel/WarningLabel.text = text
+        if not $CanvasLayer/HUD/WarningPanel/WarningLabel/WarningAnimationPlayer.is_playing():            
+            $CanvasLayer/HUD/WarningPanel/WarningLabel/WarningAnimationPlayer.play("blinking")  
 
 func fade_for_door(door):
     current_door_for_fade = door
