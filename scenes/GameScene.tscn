@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
 [ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
@@ -15,49 +15,7 @@
 [ext_resource path="res://game_objects/mechanics/Speaker.tscn" type="PackedScene" id=13]
 [ext_resource path="res://game_objects/mechanics/Stain.tscn" type="PackedScene" id=14]
 [ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/sprites/mask/mask.png" type="Texture" id=16]
-[ext_resource path="res://scenes/CarProgress.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/sprites/hud/timer.png" type="Texture" id=18]
-[ext_resource path="res://resources/font_sets/hud_font.tres" type="DynamicFont" id=19]
-[ext_resource path="res://assets/sprites/hud/trashcan.png" type="Texture" id=20]
-
-[sub_resource type="Animation" id=1]
-
-resource_name = "fade_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("FadePanel:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.17, 0.17 ), Vector2( 2, 2 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-
-resource_name = "fade_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("FadePanel:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 2, 2 ), Vector2( 0.17, 0.17 ) ]
-}
-
-[sub_resource type="StyleBoxFlat" id=3]
-
-bg_color = Color( 0, 0, 0, 0.709804 )
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=16]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -257,132 +215,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" parent="." instance=ExtResource( 16 )]
 
-[node name="FadePanel" type="TextureRect" parent="CanvasLayer"]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-margin_left = -1000.0
-margin_top = -680.0
-margin_right = 1400.0
-margin_bottom = 920.0
-rect_scale = Vector2( 0.17, 0.17 )
-rect_pivot_offset = Vector2( 1200, 800 )
-texture = ExtResource( 16 )
-
-[node name="FadeAnimation" type="AnimationPlayer" parent="CanvasLayer"]
-anims/fade_in = SubResource( 1 )
-anims/fade_out = SubResource( 2 )
-
-[node name="HUD" type="Control" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 370.0
-margin_top = 220.0
-margin_right = 370.0
-margin_bottom = 220.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Panel" type="Panel" parent="CanvasLayer/HUD"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -570.0
-margin_top = -236.0
-margin_right = -170.0
-margin_bottom = -220.0
-custom_styles/panel = SubResource( 3 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/Panel"]
-margin_top = 4.0
-margin_right = 400.0
-margin_bottom = 32.0
-size_flags_vertical = 3
-custom_constants/separation = 4
-alignment = 2
-
-[node name="CarProgress" parent="CanvasLayer/HUD/Panel/HBoxContainer" instance=ExtResource( 17 )]
-
-[node name="spacer2" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 222.0
-margin_right = 222.0
-margin_bottom = 14.0
-size_flags_vertical = 0
-align = 1
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 226.0
-margin_right = 233.0
-margin_bottom = 7.0
-rect_min_size = Vector2( 7, 7 )
-size_flags_vertical = 0
-texture = ExtResource( 18 )
-
-[node name="TimerLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 237.0
-margin_right = 277.0
-margin_bottom = 8.0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 19 )
-text = "03:00"
-align = 1
-
-[node name="spacer" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 281.0
-margin_right = 281.0
-margin_bottom = 14.0
-size_flags_vertical = 0
-align = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 285.0
-margin_right = 292.0
-margin_bottom = 7.0
-rect_min_size = Vector2( 7, 7 )
-size_flags_vertical = 0
-texture = ExtResource( 20 )
-stretch_mode = 5
-
-[node name="TrashCountLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 296.0
-margin_right = 320.0
-margin_bottom = 8.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 19 )
-text = "5/5"
-align = 1
-
-[node name="spacer3" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 324.0
-margin_right = 328.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 4, 0 )
-size_flags_vertical = 0
-align = 1
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 332.0
-margin_right = 396.0
-margin_bottom = 8.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 19 )
-text = "00000000"
-align = 1
-
-[node name="spacer4" type="Label" parent="CanvasLayer/HUD/Panel/HBoxContainer"]
-margin_left = 400.0
-margin_right = 400.0
-margin_bottom = 14.0
-size_flags_vertical = 0
-align = 1
-
-[connection signal="animation_finished" from="CanvasLayer/FadeAnimation" to="." method="_on_FadeAnimation_animation_finished"]
+[connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]

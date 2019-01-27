@@ -47,6 +47,8 @@ var state
 var velocity = Vector2()
 var input_direction = Vector2()
 
+var move_enabled = true
+
 func _ready():
     _change_state(states.IDLE)
 
@@ -73,6 +75,10 @@ func _process(delta):
         stats_not_yet_shown = false
 
 func _physics_process(delta):
+    
+    if not move_enabled:
+        return
+    
     update_direction()
     apply_gravity()
     
@@ -121,6 +127,7 @@ func _input(event):
         process_door_enter()
 
 func process_door_enter():
+    move_enabled = false
     current_door.enter_door(self)
 
 func move():
@@ -142,6 +149,9 @@ func move():
     
 func _unhandled_input(event):
      if event is InputEventKey:
+        
+        if not move_enabled:
+            return
         
         # Collecting an object
         if event.pressed and event.scancode == KEY_F and collides_movable and collected_object == null and !collides_trashcan:
@@ -274,6 +284,10 @@ func score_points(points):
     current_score += points
     owner.update_score(current_score)
     pop_text_on_self(str(points))
+    
+func score_points_no_popup(points):
+    current_score += points
+    owner.update_score(current_score)
     
 
 func do_collect_item(score):

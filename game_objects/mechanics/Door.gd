@@ -33,6 +33,8 @@ func enter_door(player):
 func notify_warp_pre_fade_ended():
     current_player.position = get_node(target_door).position
     
+    current_player.move_enabled = true
+    
     owner.fade_out_for_door(self)
 
 func _on_Area_body_entered(body):
