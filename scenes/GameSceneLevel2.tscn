@@ -196,6 +196,7 @@ position = Vector2( 448, 416 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0
+one_shot = true
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 15 )]

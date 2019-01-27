@@ -17,6 +17,7 @@ var secrets_count = 0
 var current_door_for_fade = null
 
 var level_complete = false
+var level_lost = false
 
 var current_level_number
 
@@ -97,7 +98,7 @@ func notify_secret_found():
 func _physics_process(delta):
     var time_left = int($Timer.time_left) 
     $CanvasLayer/HUD/Panel/HBoxContainer/CarProgress.set_timeleft(time_left, $Timer.get_wait_time())
-    timer_label.text = str(time_left)
+    timer_label.text = str(time_left).pad_zeros(3)
     if ($Timer.time_left < 295):
         #$CanvasLayer/HUD/ParentsAreClose.visible = true
         pass
@@ -129,7 +130,8 @@ func check_level_completion():
     #if trash_in_dumpster == 1 or stains_cleaned == 1:
     if trash_in_dumpster == trash_count and stains_cleaned == stains_count:
         level_complete()
-
+        #level_lost()
+        
 func level_complete():
     level_complete = true
     GameSingleton.stop_overworld_music()
@@ -138,6 +140,15 @@ func level_complete():
     var time_bonus = int($Timer.time_left) * 10
     $CanvasLayer.show_level_complete(time_bonus, secrets_found, secrets_count)
     $Player.score_points_no_popup(time_bonus)
+    #Save score
+    GameSingleton.current_score = $Player.current_score
+    
+func level_lost():
+    level_lost = true
+    GameSingleton.stop_overworld_music()
+    $Player.move_enabled = false
+    $Timer.set_paused(true)
+    $CanvasLayer.show_level_lost()
     #Save score
     GameSingleton.current_score = $Player.current_score
 
@@ -149,16 +160,20 @@ func _input(event):
     if event.is_action_pressed("ui_accept"):
         if level_complete:
             next_level()
+        if level_lost:
+            restart_level()
             
 func next_level():
     GameSingleton.current_level += 1
-    if GameSingleton.current_level == 2:
+    restart_level()
+        
+func restart_level():
+    if GameSingleton.current_level == 1:
+        get_tree().change_scene("res://scenes/GameScene.tscn")
+    elif GameSingleton.current_level == 2:
         get_tree().change_scene("res://scenes/GameSceneLevel2.tscn")
     else:
         get_tree().change_scene("res://scenes/TitleScreen.tscn")
-        
 
-    
-    
-    
-    
+func _on_Timer_timeout():
+    level_lost()
