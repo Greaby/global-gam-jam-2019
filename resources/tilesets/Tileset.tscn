@@ -681,3 +681,309 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Toilet" type="Sprite" parent="."]
+position = Vector2( 496, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 544, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Toilet2" type="Sprite" parent="."]
+position = Vector2( 496, 384 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 544, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower" type="Sprite" parent="."]
+position = Vector2( 544, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower2" type="Sprite" parent="."]
+position = Vector2( 576, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower3" type="Sprite" parent="."]
+position = Vector2( 608, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower4" type="Sprite" parent="."]
+position = Vector2( 544, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower5" type="Sprite" parent="."]
+position = Vector2( 576, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 128, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower6" type="Sprite" parent="."]
+position = Vector2( 608, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 160, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower7" type="Sprite" parent="."]
+position = Vector2( 544, 384 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower8" type="Sprite" parent="."]
+position = Vector2( 576, 384 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 576, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shower9" type="Sprite" parent="."]
+position = Vector2( 608, 384 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Lavabo" type="Sprite" parent="."]
+position = Vector2( 512, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Lavabo2" type="Sprite" parent="."]
+position = Vector2( 512, 384 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Canape" type="Sprite" parent="."]
+position = Vector2( 656, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Canape2" type="Sprite" parent="."]
+position = Vector2( 688, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 128, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableSalon" type="Sprite" parent="."]
+position = Vector2( 720, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 160, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableSalon2" type="Sprite" parent="."]
+position = Vector2( 752, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableSalon3" type="Sprite" parent="."]
+position = Vector2( 720, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 608, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableSalon4" type="Sprite" parent="."]
+position = Vector2( 752, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Chaise" type="Sprite" parent="."]
+position = Vector2( 672, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableCuisine" type="Sprite" parent="."]
+position = Vector2( 720, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TableCuisine2" type="Sprite" parent="."]
+position = Vector2( 752, 352 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Four" type="Sprite" parent="."]
+position = Vector2( 816, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 128, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Meuble" type="Sprite" parent="."]
+position = Vector2( 848, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 160, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Hote" type="Sprite" parent="."]
+position = Vector2( 880, 288 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Hote2" type="Sprite" parent="."]
+position = Vector2( 880, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 640, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ArmoireHaut" type="Sprite" parent="."]
+position = Vector2( 928, 320 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bed" type="Sprite" parent="."]
+position = Vector2( 704, 400 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 32, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bed2" type="Sprite" parent="."]
+position = Vector2( 736, 400 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bed3" type="Sprite" parent="."]
+position = Vector2( 768, 400 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 96, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Comode" type="Sprite" parent="."]
+position = Vector2( 800, 368 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 128, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Comode2" type="Sprite" parent="."]
+position = Vector2( 800, 400 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 160, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PetiteTable" type="Sprite" parent="."]
+position = Vector2( 832, 400 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 192, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Fenetre" type="Sprite" parent="."]
+position = Vector2( 608, 256 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 224, 672, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
