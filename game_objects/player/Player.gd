@@ -43,6 +43,9 @@ const MAX_GRAVITY = 400
 export (int) var gravity = 18
 export (int) var speed = 200
 export (int) var jump_speed = 400
+export (int) var trampoline_jump_speed = 600
+
+var jumped_on_trampoline = false
 
 enum states {IDLE, WALK, JUMP, FALL}
 var state
@@ -66,7 +69,10 @@ func _change_state(new_state):
         states.JUMP:
             anim.play("Jump")
             $jumpSound.play()
-            velocity.y = -jump_speed
+            if jumped_on_trampoline:
+                velocity.y = -trampoline_jump_speed
+            else:
+                velocity.y = -jump_speed
 
     state = new_state
 
@@ -146,6 +152,7 @@ func apply_gravity():
 
 func _input(event):
     if event.is_action_pressed("jump") and state in [states.IDLE, states.WALK]:
+        jumped_on_trampoline = false
         return _change_state(states.JUMP)
    
     # Door enter 
@@ -173,6 +180,11 @@ func move():
         
         if collider.is_in_group("collectable_on_touch"):
             collider.collect(self)
+            
+        if collider.is_in_group("trampoline"):
+            # Jump
+            jumped_on_trampoline = true
+            _change_state(states.JUMP)
     
 func _unhandled_input(event):
      if event is InputEventKey:
@@ -185,7 +197,7 @@ func _unhandled_input(event):
             #collected_object = collides_movable.collider                 
             collected_object = collides_movable
             if collected_object.is_in_group("trash_item"):
-                if collected_object.trash_type == 3:
+                if collected_object.trash_material == 1:
                     $pickupGlassSound.play()
                 else:
                     $pickupMetalSound.play()
@@ -207,9 +219,13 @@ func _unhandled_input(event):
                     print ("dropping")
                     collected_object.delete()
                     #pop_text_on_obj(collides_trashcan, "THROW TRASH")
-                    collected_object = null
                     collides_trashcan.add_trash(1)
-                    $emptyTrashSound.play()      
+                    
+                    if collected_object.trash_material == 1:
+                        $dropGlassSound.play()
+                    else:
+                        $emptyTrashSound.play()
+                    collected_object = null
                     score_points(10)
 
                 else:
@@ -225,7 +241,14 @@ func _unhandled_input(event):
                 if collected_object.is_in_group("trash_bag"):
                     items_emptied = collected_object.contents
                       
-                $emptyTrashSound.play()
+                    $throwBagSound.play()
+                
+                else:
+                    if collected_object.trash_material == 1:
+                        $dropGlassSound.play()
+                    else:
+                        $emptyTrashSound.play()
+                
                 collected_object.delete()
                 collected_object = null   
                     
@@ -241,8 +264,7 @@ func _unhandled_input(event):
             #print ("trying to pickup")
             
             if collides_trashcan.contents > 0:
-                 $pickupGlassSound.play()
-                 $pickupMetalSound.play()
+                 $pickBagSound.play()
                  var bag = trash_bag.instance()
                  bag.contents = collides_trashcan.contents     
                  self.get_parent().add_child(bag)
