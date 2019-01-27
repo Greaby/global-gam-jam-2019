@@ -53,7 +53,7 @@ func animation_show_ready(step):
         
 func show_broom_control():
     $HUD/InfoPanel.visible = true
-    $HUD/InfoPanel/InfoLabel.text = "PRESS C TO CLEAN"
+    $HUD/InfoPanel/InfoLabel.text = "THIS MAY BE USEFUL ON THE FLOOR...\nPRESS C TO GET RID OF STAINS"
     
 func hide_broom_control():
     $HUD/InfoPanel/InfoLabel.text = ""
@@ -62,7 +62,7 @@ func hide_broom_control():
     
 func show_speaker_control():
     $HUD/InfoPanel.visible = true
-    $HUD/InfoPanel/InfoLabel.text = "PRESS C TO PLAY MUSIC"
+    $HUD/InfoPanel/InfoLabel.text = "BLUETOOTH SUPER-BASS SPEAKER\nPRESS C TO PLAY / STOP THE MUSIC"
     
 func hide_speaker_control():
     $HUD/InfoPanel/InfoLabel.text = ""
