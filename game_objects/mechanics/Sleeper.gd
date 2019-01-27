@@ -32,7 +32,8 @@ func _on_Area2D_area_entered(area):
 #       body.collides_movable = self
 
 func _wake_up():
-    queue_free()
+    if(not $AnimationPlayer.is_playing()):
+        $AnimationPlayer.play("fade-out")
 
 func notify_music_start():
     speaker_playing = true
@@ -49,3 +50,7 @@ func _on_Area2D_area_exited(area):
     #if area.is_in_group("player"):    
  #      body.collides_movable = self
 
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+    queue_free()
