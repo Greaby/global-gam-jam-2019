@@ -24,6 +24,7 @@ var current_level_number
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    randomize()
     timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
     stain_cleaned_label = $CanvasLayer/HUD/Panel/HBoxContainer/StainCountLabel
@@ -66,6 +67,7 @@ func spawn_trash():
     
     for spawn in $Spawners.get_children():
         var trash = trash_ressource.instance()
+        trash.trash_type = randi() % 4
         trash.position = spawn.position
         $Collectibles.add_child(trash)
 

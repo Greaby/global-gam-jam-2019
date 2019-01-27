@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/GameScene.gd" type="Script" id=1]
+[ext_resource path="res://resources/compiled_tilesets/base_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://game_objects/mechanics/Sleeper.gd" type="Script" id=3]
+[ext_resource path="res://game_objects/mechanics/LateralDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/mechanics/TrashCan.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game_objects/mechanics/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game_objects/mechanics/Dumpster.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game_objects/mechanics/Broom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game_objects/player/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game_objects/scene_parts/HudLayer.tscn" type="PackedScene" id=10]
+
+[node name="GameSceneLevel1" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 196608, 37, 0, 196609, 38, 0, 196610, 38, 0, 196611, 38, 0, 196612, 38, 0, 196613, 38, 0, 196614, 38, 0, 196615, 38, 0, 196616, 38, 0, 196617, 37, 0, 196618, 38, 0, 196619, 38, 0, 196620, 38, 0, 196621, 38, 0, 196622, 38, 0, 196623, 38, 0, 196624, 38, 0, 196625, 38, 0, 196626, 37, 0, 196627, 38, 0, 196628, 38, 0, 196629, 38, 0, 196630, 38, 0, 196631, 38, 0, 196632, 38, 0, 196633, 38, 0, 196634, 37, 0, 262144, 32, 0, 262145, 45, 0, 262146, 45, 0, 262147, 45, 0, 262148, 45, 0, 262149, 45, 0, 262150, 45, 0, 262151, 45, 0, 262152, 45, 0, 262153, 32, 0, 262154, 39, 0, 262155, 39, 0, 262156, 39, 0, 262157, 39, 0, 262158, 39, 0, 262159, 39, 0, 262160, 39, 0, 262161, 39, 0, 262162, 32, 0, 262163, 41, 0, 262164, 41, 0, 262165, 41, 0, 262166, 41, 0, 262167, 41, 0, 262168, 41, 0, 262169, 41, 0, 262170, 32, 0, 327680, 32, 0, 327681, 46, 0, 327682, 46, 0, 327683, 46, 0, 327684, 46, 0, 327685, 46, 0, 327686, 46, 0, 327687, 46, 0, 327688, 46, 0, 327689, 33, 0, 327690, 39, 0, 327691, 39, 0, 327692, 39, 0, 327693, 39, 0, 327694, 39, 0, 327695, 39, 0, 327696, 39, 0, 327697, 39, 0, 327698, 33, 0, 327699, 41, 0, 327700, 41, 0, 327701, 41, 0, 327702, 41, 0, 327703, 41, 0, 327704, 41, 0, 327705, 41, 0, 327706, 32, 0, 393216, 32, 0, 393217, 45, 0, 393218, 45, 0, 393219, 45, 0, 393220, 45, 0, 393221, 45, 0, 393222, 45, 0, 393223, 45, 0, 393224, 45, 0, 393225, 48, 0, 393226, 39, 0, 393227, 39, 0, 393228, 39, 0, 393229, 39, 0, 393230, 39, 0, 393231, 39, 0, 393232, 39, 0, 393233, 39, 0, 393234, 48, 0, 393235, 41, 0, 393236, 41, 0, 393237, 41, 0, 393238, 41, 0, 393239, 41, 0, 393240, 41, 0, 393241, 41, 0, 393242, 32, 0, 458752, 32, 0, 458753, 45, 0, 458754, 45, 0, 458755, 45, 0, 458756, 45, 0, 458757, 45, 0, 458758, 45, 0, 458759, 45, 0, 458760, 45, 0, 458761, 49, 0, 458762, 40, 0, 458763, 40, 0, 458764, 40, 0, 458765, 40, 0, 458766, 40, 0, 458767, 40, 0, 458768, 40, 0, 458769, 40, 0, 458770, 49, 0, 458771, 42, 0, 458772, 42, 0, 458773, 42, 0, 458774, 42, 0, 458775, 42, 0, 458776, 42, 0, 458777, 42, 0, 458778, 32, 0, 524288, 36, 0, 524289, 38, 0, 524290, 38, 0, 524291, 38, 0, 524292, 38, 0, 524293, 38, 0, 524294, 38, 0, 524295, 38, 0, 524296, 38, 0, 524297, 37, 0, 524298, 38, 0, 524299, 38, 0, 524300, 38, 0, 524301, 38, 0, 524302, 38, 0, 524303, 38, 0, 524304, 38, 0, 524305, 38, 0, 524306, 37, 0, 524307, 38, 0, 524308, 38, 0, 524309, 38, 0, 524310, 38, 0, 524311, 38, 0, 524312, 38, 0, 524313, 38, 0, 524314, 34, 0, 1572871, 31, 0, 1572872, 31, 0, 1572873, 31, 0, 1572874, 31, 0, 1572875, 31, 0, 1572876, 31, 0, 1572877, 31, 0, 1572878, 31, 0, 1572879, 31, 0, 1572880, 31, 0, 1572881, 31, 0, 1572882, 31, 0, 1572883, 31, 0, 1572884, 31, 0, 1572885, 31, 0, 1572886, 31, 0, 1638407, 31, 0, 1638408, 27, 0, 1638409, 23, 0, 1638410, 23, 0, 1638411, 23, 0, 1638412, 23, 0, 1638413, 23, 0, 1638414, 23, 0, 1638415, 23, 0, 1638416, 23, 0, 1638417, 23, 0, 1638418, 23, 0, 1638419, 23, 0, 1638420, 23, 0, 1638421, 23, 0, 1638422, 23, 0, 1638423, 28, 0, 1703939, 31, 0, 1703940, 31, 0, 1703941, 31, 0, 1703942, 31, 0, 1703943, 31, 0, 1703944, 25, 0, 1703945, 17, 0, 1703946, 17, 0, 1703947, 17, 0, 1703948, 17, 0, 1703949, 17, 0, 1703950, 17, 0, 1703951, 17, 0, 1703952, 17, 0, 1703953, 17, 0, 1703954, 17, 0, 1703955, 17, 0, 1703956, 17, 0, 1703957, 17, 0, 1703958, 17, 0, 1703959, 26, 0, 1769480, 25, 0, 1769481, 17, 0, 1769482, 17, 0, 1769483, 17, 0, 1769484, 17, 0, 1769485, 17, 0, 1769486, 17, 0, 1769487, 17, 0, 1769488, 17, 0, 1769489, 17, 0, 1769490, 17, 0, 1769491, 17, 0, 1769492, 17, 0, 1769493, 17, 0, 1769494, 17, 0, 1769495, 26, 0, 1835016, 25, 0, 1835017, 17, 0, 1835018, 17, 0, 1835019, 17, 0, 1835020, 17, 0, 1835021, 17, 0, 1835022, 17, 0, 1835023, 17, 0, 1835024, 17, 0, 1835025, 17, 0, 1835026, 17, 0, 1835027, 17, 0, 1835028, 17, 0, 1835029, 17, 0, 1835030, 17, 0, 1835031, 26, 0, 1900548, 31, 0, 1900549, 31, 0, 1900550, 31, 0, 1900551, 31, 0, 1900552, 29, 0, 1900553, 24, 0, 1900554, 24, 0, 1900555, 24, 0, 1900556, 24, 0, 1900557, 24, 0, 1900558, 24, 0, 1900559, 24, 0, 1900560, 24, 0, 1900561, 24, 0, 1900562, 24, 0, 1900563, 24, 0, 1900564, 24, 0, 1900565, 24, 0, 1900566, 24, 0, 1900567, -1610612708, 0, 1966087, 31, 0, 1966088, 31, 0, 1966089, 31, 0, 1966090, 31, 0, 1966091, 31, 0, 1966092, 31, 0, 1966093, 31, 0, 1966094, 31, 0, 1966095, 31, 0, 1966096, 31, 0, 1966097, 31, 0, 1966098, 31, 0, 1966099, 31, 0 )
+
+[node name="TileMapForeground" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262151, 85, 0, 327683, 94, 0, 327686, 94, 0, 327687, 86, 0, 327692, 94, 0, 327695, 94, 0, 327701, 94, 0, 327703, 94, 0, 327705, 21, 0, 393217, 536870984, 0, 458753, 536870985, 0, 458757, 84, 0, 458758, 84, 0, 458759, 83, 0, 458764, 88, 0, 458765, 89, 0, 458766, 90, 0, 458773, 74, 0, 458774, 75, 0, 1703946, 20, 0, 1703948, 18, 0, 1703952, 18, 0, 1703956, 18, 0 )
+
+[node name="Spawners" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="TrashSpawner" type="Position2D" parent="Spawners"]
+position = Vector2( 244, 240 )
+
+[node name="TrashSpawner2" type="Position2D" parent="Spawners"]
+position = Vector2( 201, 240 )
+
+[node name="TrashSpawner3" type="Position2D" parent="Spawners"]
+position = Vector2( 384, 240 )
+
+[node name="TrashSpawner4" type="Position2D" parent="Spawners"]
+position = Vector2( 432, 240 )
+
+[node name="TrashSpawner5" type="Position2D" parent="Spawners"]
+position = Vector2( 476, 240 )
+
+[node name="TrashSpawner6" type="Position2D" parent="Spawners"]
+position = Vector2( 500, 240 )
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Mechanics" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="LateralDoor" parent="Mechanics" instance=ExtResource( 4 )]
+position = Vector2( 303.97, 224 )
+
+[node name="LateralDoor2" parent="Mechanics" instance=ExtResource( 4 )]
+position = Vector2( 592, 224.014 )
+direction = 1
+
+[node name="TrashCan" parent="Mechanics" instance=ExtResource( 5 )]
+position = Vector2( 640, 240 )
+
+[node name="DoorToBasement" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 816, 224 )
+target_door = NodePath("../../../GameSceneLevel1/Mechanics/BasementDoor")
+door_style = 1
+
+[node name="BasementDoor" parent="Mechanics" instance=ExtResource( 6 )]
+position = Vector2( 335.97, 896 )
+target_door = NodePath("../../../GameSceneLevel1/Mechanics/DoorToBasement")
+
+[node name="Dumpster" parent="Mechanics" instance=ExtResource( 7 )]
+position = Vector2( 656, 912 )
+
+[node name="Mop" parent="Mechanics" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 560, 240 )
+broom_type = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 96, 214.823 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="TileMapFront" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 10 )]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="fade_finished" from="CanvasLayer" to="." method="_on_CanvasLayer_fade_finished"]
