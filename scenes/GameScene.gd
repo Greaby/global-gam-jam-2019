@@ -94,6 +94,9 @@ func _on_FadeAnimation_animation_finished(anim_name):
         $CanvasLayer/FadePanel.visible = false
 
 func check_level_completion():
+    
+    #To test level complete quickly
+    #if trash_in_dumpster == 1:
     if trash_in_dumpster == trash_count:
         level_complete()
 
@@ -113,4 +116,17 @@ func _on_CanvasLayer_fade_finished():
 func _input(event):
     if event.is_action_pressed("ui_accept"):
         if level_complete:
-            get_tree().change_scene("res://scenes/TitleScreen.tscn")
+            next_level()
+            
+func next_level():
+    GameSingleton.current_level += 1
+    if GameSingleton.current_level == 2:
+        get_tree().change_scene("res://scenes/GameSceneLevel2.tscn")
+    else:
+        get_tree().change_scene("res://scenes/TitleScreen.tscn")
+        
+
+    
+    
+    
+    

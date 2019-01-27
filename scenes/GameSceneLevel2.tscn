@@ -32,7 +32,7 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 327705, 22, 0, 655376, 21, 0, 1703935, 18, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0, 1835032, 18, 0, 2031610, 18, 0, 1966108, 18, 0, 2162679, 18, 0 )
+tile_data = PoolIntArray( 262156, 19, 0, 262158, 19, 0, 327692, 19, 0, 327694, 19, 0, 327705, 22, 0, 393228, 19, 0, 393230, 19, 0, 655376, 21, 0, 1703935, 18, 0, 1703947, 18, 0, 1703950, 18, 0, 1703953, 20, 0, 1703954, 18, 0, 1835032, 18, 0, 2031610, 18, 0, 1966108, 18, 0, 2162679, 18, 0 )
 
 [node name="Spawners" type="Node2D" parent="."]
 editor/display_folded = true
@@ -41,7 +41,6 @@ editor/display_folded = true
 position = Vector2( 712.094, 214.823 )
 
 [node name="Collectibles" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="TrashPiece" parent="Collectibles" instance=ExtResource( 3 )]
 position = Vector2( 272, 240 )
@@ -150,7 +149,6 @@ position = Vector2( -256, 1096 )
 [node name="TrashBag" parent="Collectibles" instance=ExtResource( 5 )]
 
 [node name="Mechanics" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="LateralDoor" parent="Mechanics" instance=ExtResource( 7 )]
