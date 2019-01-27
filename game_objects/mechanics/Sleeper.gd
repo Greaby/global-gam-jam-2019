@@ -32,7 +32,7 @@ func _on_Area2D_area_entered(area):
 #       body.collides_movable = self
 
 func _wake_up():
-    print ("waking up")
+    queue_free()
 
 func notify_music_start():
     speaker_playing = true
