@@ -28,7 +28,7 @@ var put_down_distance = 0
 var current_door = null
 
 var current_score = 0
-var current_life = 3
+var current_lives = 3
 var current_health = 3
 
 var has_broom = false

@@ -43,9 +43,10 @@ func _ready():
     
     GameSingleton.play_overworld_music()
     GameSingleton.stop_title_music()
-    $CanvasLayer.animate_start_panel(current_level_number)
     
     $Player.init_score(GameSingleton.current_score)
+    $Player.current_lives = GameSingleton.current_lives
+    $CanvasLayer.animate_start_panel(current_level_number, GameSingleton.current_lives)
     
     spawn_trash()
     count_trash()
@@ -197,6 +198,7 @@ func level_lost():
     $CanvasLayer.show_level_lost(false)
     #Save score
     GameSingleton.current_score = $Player.current_score
+    GameSingleton.current_lives = $Player.current_lives - 1
     
 func player_died():
     level_lost = true
@@ -206,6 +208,7 @@ func player_died():
     $CanvasLayer.show_level_lost(true)
     #Save score
     GameSingleton.current_score = $Player.current_score
+    GameSingleton.current_lives = $Player.current_lives - 1
 
 
 func _on_CanvasLayer_fade_finished():
@@ -216,11 +219,17 @@ func _input(event):
         if level_complete:
             next_level()
         if level_lost:
-            restart_level()
+            if GameSingleton.current_lives == -1:
+                game_over()
+            else:
+                restart_level()
             
 func next_level():
     GameSingleton.current_level += 1
     restart_level()
+    
+func game_over():
+    get_tree().change_scene("res://scenes/GameOver.tscn")
         
 func restart_level():
     if GameSingleton.current_level == 1:

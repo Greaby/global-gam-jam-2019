@@ -36,9 +36,9 @@ func show_level_lost(is_player_death):
     $HUD/CenterPanel/CenterLabel.text = text_to_show
 
 
-func animate_start_panel(level_number):
+func animate_start_panel(level_number, lives):
     $HUD/StartPanel.visible = true
-    $HUD/StartPanel/StartLabel.text = "HOUSE " + str(level_number)
+    $HUD/StartPanel/StartLabel.text = "HOUSE " + str(level_number) + "\nLIVES: " + str(lives)
     $HUD/StartPanel/StartPanelAnimator.play("ready_intro")
 
 func animation_show_ready(step):

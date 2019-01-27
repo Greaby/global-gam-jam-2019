@@ -11,6 +11,7 @@ var play_done = false
 func _ready():
     GameSingleton.play_title_music()
     GameSingleton.stop_overworld_music()
+    $LabelScore.text = "SCORE: " + str(GameSingleton.current_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -42,7 +43,7 @@ func go_to_next_scene():
     GameSingleton.current_level = 1
     GameSingleton.current_score = 0
     GameSingleton.current_lives = 3
-    get_tree().change_scene("res://scenes/IntroScreen.tscn")
+    get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
     
     
