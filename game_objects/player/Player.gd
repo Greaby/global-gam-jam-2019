@@ -309,7 +309,7 @@ func unset_current_interactor(interactor):
         print("Interactor unset")
         
 func do_update_stats():
-    owner.update_stats(trash_handled, trash_max)
+    #owner.update_stats(trash_handled, trash_max)
     owner.update_health(current_health)
 
         
