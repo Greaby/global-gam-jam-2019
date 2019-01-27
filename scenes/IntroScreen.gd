@@ -48,7 +48,7 @@ func show_page():
 func go_to_next_scene():
     GameSingleton.current_level = 1
     GameSingleton.current_score = 0
-    get_tree().change_scene("res://scenes/GameScene.tscn")
+    get_tree().change_scene("res://scenes/GameSceneLevel1.tscn")
 
     
     
