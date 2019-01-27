@@ -150,7 +150,6 @@ position = Vector2( -256, 1096 )
 [node name="TrashBag" parent="Collectibles" instance=ExtResource( 5 )]
 
 [node name="Mechanics" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="LateralDoor" parent="Mechanics" instance=ExtResource( 7 )]
@@ -195,6 +194,9 @@ position = Vector2( 352, 404 )
 
 [node name="Stain" parent="Mechanics" instance=ExtResource( 14 )]
 position = Vector2( 448, 416 )
+
+[node name="Stain2" parent="Mechanics" instance=ExtResource( 14 )]
+position = Vector2( 416, 416 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 300.0

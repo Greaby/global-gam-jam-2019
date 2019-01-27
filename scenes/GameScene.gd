@@ -3,9 +3,13 @@ extends Node2D
 var timer_label
 var trash_carried_label
 var score_label
+var stain_cleaned_label
 
 var trash_count = 0
 var trash_in_dumpster = 0
+
+var stains_count = 0
+var stains_cleaned = 0
 
 var secrets_found = 0
 var secrets_count = 0
@@ -14,13 +18,21 @@ var current_door_for_fade = null
 
 var level_complete = false
 
+var current_level_number
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     timer_label = $CanvasLayer/HUD/Panel/HBoxContainer/TimerLabel
     trash_carried_label = $CanvasLayer/HUD/Panel/HBoxContainer/TrashCountLabel
+    stain_cleaned_label = $CanvasLayer/HUD/Panel/HBoxContainer/StainCountLabel
     score_label = $CanvasLayer/HUD/Panel/HBoxContainer/ScoreLabel
     
+    current_level_number = GameSingleton.current_level
+    
     GameSingleton.play_overworld_music()
+    $CanvasLayer.animate_start_panel(current_level_number)
+    
+    $Player.init_score(GameSingleton.current_score)
     
     spawn_trash()
     count_trash()
@@ -36,8 +48,14 @@ func count_trash():
     for item in $Collectibles.get_children():
         if item.is_in_group("trash_item"):
             trash_count += 1
+        if item.is_in_group("stain_item"):
+            stains_count += 1
         if item.is_in_group("secret_item"):
             secrets_count += 1
+        
+    for item in $Mechanics.get_children():
+        if item.is_in_group("stain_item"):
+            stains_count += 1
 
 func spawn_trash():
     var trash_ressource = load("res://game_objects/collectables/TrashPiece.tscn")
@@ -53,6 +71,13 @@ func update_stats(trash_carried, trash_carried_max):
     
     check_level_completion()
     
+
+func update_stain_stats():
+    var text_to_show = str(stains_cleaned) + "/" + str(stains_count)
+    stain_cleaned_label.text = text_to_show
+    
+    check_level_completion()
+    
 func update_score(score):
     var text_to_show = str(score).pad_zeros(8)
     score_label.text = text_to_show
@@ -60,6 +85,11 @@ func update_score(score):
 func notify_trash_deposited(count):
     trash_in_dumpster += count
     update_trash_stats()
+    
+
+func notify_stain_cleaned(count):
+    stains_cleaned += count
+    update_stain_stats()
     
 func notify_secret_found():
     secrets_found += 1
@@ -96,8 +126,8 @@ func _on_FadeAnimation_animation_finished(anim_name):
 func check_level_completion():
     
     #To test level complete quickly
-    #if trash_in_dumpster == 1:
-    if trash_in_dumpster == trash_count:
+    #if trash_in_dumpster == 1 or stains_cleaned == 1:
+    if trash_in_dumpster == trash_count and stains_cleaned == stains_count:
         level_complete()
 
 func level_complete():
@@ -108,6 +138,8 @@ func level_complete():
     var time_bonus = int($Timer.time_left) * 10
     $CanvasLayer.show_level_complete(time_bonus)
     $Player.score_points_no_popup(time_bonus)
+    #Save score
+    GameSingleton.current_score = $Player.current_score
 
 
 func _on_CanvasLayer_fade_finished():

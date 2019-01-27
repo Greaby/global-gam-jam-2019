@@ -231,7 +231,9 @@ func _unhandled_input(event):
                 collides_trashcan
             
             
-            
+func notify_stain_cleaned():
+    owner.notify_stain_cleaned(1)
+    score_points(5)
 
                 
     
@@ -287,6 +289,10 @@ func score_points(points):
     
 func score_points_no_popup(points):
     current_score += points
+    owner.update_score(current_score)
+    
+func init_score(points):
+    current_score = points
     owner.update_score(current_score)
     
 

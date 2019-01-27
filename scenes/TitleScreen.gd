@@ -33,8 +33,9 @@ func _input(event):
             $AnimationPlayer.play("press_start")
             anim_done = true
             
-        
 func go_to_next_scene():
+    GameSingleton.current_level = 1
+    GameSingleton.current_score = 0
     get_tree().change_scene("res://scenes/GameScene.tscn")
 
     

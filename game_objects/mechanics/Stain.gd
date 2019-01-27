@@ -23,6 +23,7 @@ func _physics_process(delta):
             print(clean_timer)
             clean_timer = clean_timer - delta
             if clean_timer <= 0:
+                collides_player.notify_stain_cleaned()
                 queue_free()
     elif collides_player and !collides_player.brooming:
         clean_timer = 0

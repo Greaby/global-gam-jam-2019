@@ -25,3 +25,20 @@ func show_level_complete(time_bonus):
     $HUD/CenterPanel.visible = true
     var text_to_show = "CLEANING COMPLETE!\nTIME BONUS: " + str(time_bonus)
     $HUD/CenterPanel/CenterLabel.text = text_to_show
+
+
+func animate_start_panel(level_number):
+    $HUD/StartPanel.visible = true
+    $HUD/StartPanel/StartLabel.text = "HOUSE " + str(level_number)
+    $HUD/StartPanel/StartPanelAnimator.play("ready_intro")
+
+func animation_show_ready(step):
+    if step == 0:
+        $HUD/StartPanel/StartLabel.text = "READY"
+    if step == 1:
+        $HUD/StartPanel/StartLabel.text = "SET"
+    if step == 2:
+        $HUD/StartPanel/StartLabel.text = "CLEAN"
+    if step == 3:
+        $HUD/StartPanel.visible = false
+     
